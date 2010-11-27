@@ -62,6 +62,9 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     i18n (0.4.2)
+    jquery-rails (0.2.5)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.4.6)
     json_pure (1.4.6)
     launchy (0.3.7)
@@ -128,6 +131,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
+  jquery-rails
   launchy
   pg
   rails (= 3.0.3)
