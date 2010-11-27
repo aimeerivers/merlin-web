@@ -1,5 +1,5 @@
 Given /^I have started a new adventure$/ do
-  visit adventure_path
+  visit new_adventure_path
 end
 
 Then /^I should start a new adventure$/ do

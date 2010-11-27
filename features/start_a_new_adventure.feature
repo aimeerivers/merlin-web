@@ -4,5 +4,5 @@ Feature: Start a new adventure
   I want to start a new adventure
 
   Scenario: User starts an adventure
-    When I go to the adventure page
+    When I go to the new adventure page
     Then I should start a new adventure

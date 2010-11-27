@@ -23,6 +23,18 @@ describe AdventureController do
     end
   end
 
+  context 'deliberately starting a new adventure' do
+    it 'starts a new adventure from scratch' do
+      Adventure.should_receive(:new)
+      get :new
+    end
+
+    it 'redirects to playing the adventure' do
+      get :new
+      response.should redirect_to(adventure_path)
+    end
+  end
+
   context 'moving around' do
     before do
       session[:adventure] = adventure

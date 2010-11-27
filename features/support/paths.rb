@@ -14,6 +14,9 @@ module NavigationHelpers
     when /the choice page/
       choice_path
 
+    when /the new adventure page/
+      new_adventure_path
+
     when /the adventure page/
       adventure_path
 
