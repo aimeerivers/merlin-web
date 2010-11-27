@@ -14,6 +14,9 @@ module NavigationHelpers
     when /the choice page/
       choice_path
 
+    when /the adventure page/
+      adventure_path
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

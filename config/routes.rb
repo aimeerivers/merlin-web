@@ -1,6 +1,7 @@
 Merlin::Application.routes.draw do
 
   match '/choice' => 'pages#choice', as: :choice
+  match '/adventure' => 'adventure#play', as: :adventure
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
