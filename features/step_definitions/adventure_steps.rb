@@ -14,6 +14,10 @@ Then /^the adventure should take me to the trees$/ do
   page.should have_css('.description', :text => 'Thick trees are at the foot of a mountain')
 end
 
+Then /^the adventure should take me to the evergreen glade$/ do
+  page.should have_css('.description', :text => 'You are in an evergreen glade')
+end
+
 Then /^the adventure should take me back to the grassy bank$/ do
   page.should have_css('.description', :text => 'On a grassy bank a figure lies sleeping')
 end

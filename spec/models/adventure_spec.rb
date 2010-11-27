@@ -19,6 +19,12 @@ describe Adventure do
       adventure.move('south')
       adventure.description.should =~ /On a grassy bank a figure lies sleeping/
     end
+
+    it 'does not move with invalid input' do
+      current_room = adventure.current_room
+      adventure.move('hackhackhack')
+      adventure.current_room.should == current_room
+    end
   end
 
 end

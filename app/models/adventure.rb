@@ -9,7 +9,9 @@ class Adventure
   def move(direction)
     @current_room = case(direction)
                     when 'north' then Room.by_key('trees')
-                    when 'south' then Room.by_key('grassy bank')
+                    when 'east' then Room.by_key('evergreen glade')
+                    when 'south', 'west' then Room.by_key('grassy bank')
+                    else @current_room
                     end
   end
 
