@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe AdventureController do
+  let(:adventure) { mock(:adventure) }
 
   context 'playing adventure' do
     context 'when no adventure currently in progress' do
-      let(:adventure) { mock(:adventure) }
 
       before do
         Adventure.stub(:new) { adventure }
@@ -15,10 +15,22 @@ describe AdventureController do
         get :play
       end
 
-      it 'provides adventure details to the view' do
+      it 'saves the adventure' do
         get :play
-        assigns(:adventure).should == adventure
+        session[:adventure].should == adventure
       end
+
+    end
+  end
+
+  context 'moving around' do
+    before do
+      session[:adventure] = adventure
+    end
+
+    it 'moves in the direction requested' do
+      adventure.should_receive(:move).with('north')
+      get :move, direction: 'north'
     end
   end
 
