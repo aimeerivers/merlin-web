@@ -1,4 +1,5 @@
 .description= adventure.description
 
 %ul.actions
-  %li= link_to('Go North', move_path('north'))
+  - %w(north south).each do |direction|
+    %li= link_to("Go #{direction.titlecase}", move_path(direction))

@@ -14,6 +14,11 @@ describe Adventure do
       adventure.move('north')
       adventure.description.should =~ /Thick trees are at the foot of a mountain/
     end
+
+    it 'can go South too' do
+      adventure.move('south')
+      adventure.description.should =~ /On a grassy bank a figure lies sleeping/
+    end
   end
 
 end
