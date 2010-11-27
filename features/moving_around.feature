@@ -16,3 +16,11 @@ Feature: Moving around
     Then the adventure should take me to the evergreen glade
     When I move West
     Then the adventure should take me back to the grassy bank
+
+  @wip
+  Scenario: User moves South from the start page
+    Given I have started a new adventure
+    When I move South
+    Then the adventure should take me to the deep river
+    When I move North
+    Then the adventure should take me back to the grassy bank
