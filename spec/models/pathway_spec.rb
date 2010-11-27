@@ -4,7 +4,7 @@ describe Pathway do
 
   context 'finding a pathway from a room in a direction' do
     it 'looks for a pathway' do
-      Pathway::PATHWAYS.should_receive(:[]).with('start.north')
+      Pathway.should_receive(:find_by_from_and_direction).with('start', 'north')
       Pathway.from_room_in_direction('start', 'north')
     end
 

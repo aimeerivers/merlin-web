@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101127191852) do
+ActiveRecord::Schema.define(:version => 20101127232207) do
+
+  create_table "pathways", :force => true do |t|
+    t.string "from"
+    t.string "direction"
+    t.string "going_to"
+  end
 
   create_table "rooms", :force => true do |t|
     t.string "key"
