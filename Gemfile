@@ -39,3 +39,7 @@ group :cucumber do
   gem 'spork'
   gem 'launchy'
 end
+
+group :development do
+  gem 'rspec-rails'
+end
