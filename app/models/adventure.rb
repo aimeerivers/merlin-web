@@ -3,17 +3,25 @@ class Adventure
   attr_reader :current_room
 
   def initialize
-    @current_room = Room.by_key('start')
+    set_current_room('start')
   end
 
   def move(direction)
-    return unless (pathway = Pathway.from_room_in_direction(current_room.key, direction))
-    return unless (new_room = Room.by_key(pathway.going_to))
-    @current_room = new_room
+    pathway = Pathway.from_room_in_direction(current_room.key, direction)
+    return false if pathway.nil?
+    set_current_room(pathway.going_to)
   end
 
   def description
     current_room.description
+  end
+
+  private
+
+  def set_current_room(key)
+    room = Room.by_key(key)
+    return false if room.nil?
+    @current_room = room
   end
 
 end

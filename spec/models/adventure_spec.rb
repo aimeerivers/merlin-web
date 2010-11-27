@@ -19,7 +19,7 @@ describe Adventure do
   context 'moving around' do
     it 'does not move with invalid input' do
       current_room = adventure.current_room
-      adventure.move('hackhackhack')
+      adventure.move('hackhackhack').should be_false
       adventure.current_room.should == current_room
     end
 
@@ -27,7 +27,7 @@ describe Adventure do
       current_room = adventure.current_room
       Pathway.stub(:from_room_in_direction) { (mock(:path, going_to: 'trees')) }
       Room.stub(:by_key).with('trees') { nil }
-      adventure.move('south')
+      adventure.move('south').should be_false
       adventure.current_room.should == current_room
     end
 
@@ -49,7 +49,7 @@ describe Adventure do
       it 'does nothing' do
         current_room = adventure.current_room
         Pathway.stub(:from_room_in_direction).and_return(nil)
-        adventure.move('north')
+        adventure.move('north').should be_false
         adventure.current_room.should == current_room
       end
     end
