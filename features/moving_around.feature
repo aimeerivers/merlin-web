@@ -17,7 +17,6 @@ Feature: Moving around
     When I move West
     Then the adventure should take me back to the grassy bank
 
-  @wip
   Scenario: User moves South from the start page
     Given I have started a new adventure
     When I move South

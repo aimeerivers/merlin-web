@@ -7,12 +7,9 @@ class Adventure
   end
 
   def move(direction)
-    @current_room = case(direction)
-                    when 'north' then Room.by_key('trees')
-                    when 'east' then Room.by_key('evergreen glade')
-                    when 'south', 'west' then Room.by_key('grassy bank')
-                    else @current_room
-                    end
+    pathway = Pathway.from_room_in_direction(current_room.key, direction)
+    return if pathway.nil?
+    @current_room = Room.by_key(pathway.going_to)
   end
 
   def description
