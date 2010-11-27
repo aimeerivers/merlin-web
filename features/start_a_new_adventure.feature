@@ -1,3 +1,4 @@
+@simple_map
 Feature: Start a new adventure
   In order to play the game
   As a user

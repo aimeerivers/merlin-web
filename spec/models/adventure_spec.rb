@@ -2,27 +2,32 @@ require 'spec_helper'
 
 describe Adventure do
   let(:adventure) { Adventure.new }
+  let(:start_room) { mock(:room, key: 'start') }
+  let(:trees_room) { mock(:room) }
+
+  before do
+    Room.stub(:by_key).with('start') { start_room }
+  end
 
   context 'a new adventure' do
     it 'starts at the grassy bank' do
-      adventure.description.should =~ /You wake up on a grassy bank/
+      Room.should_receive(:by_key).with('start')
+      Adventure.new.current_room.should == start_room
     end
   end
 
   context 'moving around' do
-    it 'changes the description' do
-      adventure.move('north')
-      adventure.description.should =~ /Thick trees are at the foot of a mountain/
-    end
-
-    it 'can go South too' do
-      adventure.move('south')
-      adventure.description.should =~ /To the South a deep river is running swiftly/
-    end
-
     it 'does not move with invalid input' do
       current_room = adventure.current_room
       adventure.move('hackhackhack')
+      adventure.current_room.should == current_room
+    end
+
+    it 'does not change room if the room cannot be found' do
+      current_room = adventure.current_room
+      Pathway.stub(:from_room_in_direction) { (mock(:path, going_to: 'trees')) }
+      Room.stub(:by_key).with('trees') { nil }
+      adventure.move('south')
       adventure.current_room.should == current_room
     end
 
@@ -33,10 +38,10 @@ describe Adventure do
 
     context 'when it finds a path going to a different room' do
       it 'changes to that room' do
-        current_room = adventure.current_room
         Pathway.stub(:from_room_in_direction).and_return(mock(:path, going_to: 'trees'))
+        Room.stub(:by_key).with('trees') { trees_room }
         adventure.move('north')
-        adventure.current_room.should_not == current_room
+        adventure.current_room.should == trees_room
       end
     end
 

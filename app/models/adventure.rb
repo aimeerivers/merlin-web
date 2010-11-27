@@ -7,9 +7,9 @@ class Adventure
   end
 
   def move(direction)
-    pathway = Pathway.from_room_in_direction(current_room.key, direction)
-    return if pathway.nil?
-    @current_room = Room.by_key(pathway.going_to)
+    return unless (pathway = Pathway.from_room_in_direction(current_room.key, direction))
+    return unless (new_room = Room.by_key(pathway.going_to))
+    @current_room = new_room
   end
 
   def description

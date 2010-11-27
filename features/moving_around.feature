@@ -1,3 +1,4 @@
+@simple_map
 Feature: Moving around
   In order to explore the world
   As a user
