@@ -24,3 +24,9 @@ Feature: Moving around
     Then the adventure should take me to the deep river
     When I move North
     Then the adventure should take me back to the grassy bank
+
+  Scenario: A message is shown if you can't move that way
+    Given I have started a new adventure
+    When I move South
+    And I try to move East
+    Then I should not be able to go that way

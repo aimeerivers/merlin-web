@@ -22,6 +22,14 @@ Then /^the adventure should take me to the deep river$/ do
   page.should have_css('.description', :text => 'To the South a deep river is running swiftly')
 end
 
+When /^I try to move (North|South|East|West)/ do |direction|
+  visit move_path(direction.downcase)
+end
+
 Then /^the adventure should take me back to the grassy bank$/ do
   page.should have_css('.description', :text => 'On a grassy bank a figure lies sleeping')
+end
+
+Then /^I should not be able to go that way$/ do
+  page.should have_css('.notice', :text => 'You cannot go that way')
 end
