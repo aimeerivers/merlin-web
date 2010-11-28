@@ -1,0 +1,24 @@
+* {
+  font-family: 'Droid Sans Mono', arial, serif;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+a {
+  color: #ccc;
+}
+
+.error {
+  color: #f00;
+}
+
+.success {
+  color: #0f0;
+}
+
+.notice {
+  color: #ff0;
+}
