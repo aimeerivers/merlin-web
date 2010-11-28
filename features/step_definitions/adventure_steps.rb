@@ -31,5 +31,5 @@ Then /^the adventure should take me back to the grassy bank$/ do
 end
 
 Then /^I should not be able to go that way$/ do
-  page.should have_css('.notice', :text => 'You cannot go that way')
+  page.should have_css('.error', :text => 'You cannot go that way')
 end

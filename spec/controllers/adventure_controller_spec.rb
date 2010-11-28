@@ -48,7 +48,7 @@ describe AdventureController do
     it 'adds a flash message when you cannot move that way' do
       adventure.stub(:move) { false }
       get :move, direction: 'west'
-      flash[:notice].should_not be_blank
+      flash[:error].should_not be_blank
     end
   end
 

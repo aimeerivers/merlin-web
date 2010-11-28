@@ -16,7 +16,7 @@ describe ItemsController do
     it 'provides feedback when you cannot take the item' do
       adventure.stub(:take_item) { false }
       get :take, item: 'mirror'
-      flash[:notice].should_not be_blank
+      flash[:error].should_not be_blank
     end
 
     it 'redirects to the adventure' do
