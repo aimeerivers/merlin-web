@@ -1,8 +1,10 @@
 class Adventure
 
-  attr_reader :current_room
+  attr_reader :current_room, :inventory
 
   def initialize
+    set_up_items
+    @inventory = []
     set_current_room('start')
   end
 
@@ -16,12 +18,42 @@ class Adventure
     current_room.description
   end
 
+  def items_in(room)
+    @items.select{|k,v| v == room}.keys
+  end
+
+  def items_in_current_room
+    items_in(@current_room.key)
+  end
+
+  def take_item(item_name)
+    return false unless item_in_current_room?(item_name)
+    remove_item_from_room(item_name)
+    @inventory << item_name
+  end
+
   private
 
   def set_current_room(key)
     room = Room.by_key(key)
     return false if room.nil?
     @current_room = room
+  end
+
+  def set_up_items
+    @items = {
+      'mirror' => 'deep river',
+      'ladder' => 'old stone wall',
+      'cake' => 'trees'
+    }
+  end
+
+  def item_in_current_room?(item_name)
+    items_in_current_room.include?(item_name)
+  end
+
+  def remove_item_from_room(item_name)
+    @items.delete(item_name)
   end
 
 end

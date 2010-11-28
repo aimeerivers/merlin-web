@@ -1,0 +1,8 @@
+- items = adventure.items_in_current_room
+- if items.any?
+  %p You can see ...
+  %ul.items
+    - items.each do |item|
+      %li{class: item}
+        = item_with_indefinite_article(item)
+        = link_to("Take #{item}", take_item_path(item))

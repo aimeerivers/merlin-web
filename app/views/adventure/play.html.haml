@@ -1,8 +1,11 @@
 .description= adventure.description
 
-- flash.each_pair do |type, message|
-  %div{:class => type}= message
+= render :partial => 'items_here'
+
+= render :partial => 'flash_messages'
 
 %ul.actions
   - %w(north east south west).each do |direction|
     %li= link_to("Go #{direction.titlecase}", move_path(direction))
+
+= render :partial => 'inventory'

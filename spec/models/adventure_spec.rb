@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Adventure do
   let(:adventure) { Adventure.new }
   let(:start_room) { mock(:room, key: 'start') }
-  let(:trees_room) { mock(:room) }
+  let(:trees_room) { mock(:room, key: 'trees') }
 
   before do
     Room.stub(:by_key).with('start') { start_room }
@@ -13,6 +13,15 @@ describe Adventure do
     it 'starts at the grassy bank' do
       Room.should_receive(:by_key).with('start')
       Adventure.new.current_room.should == start_room
+    end
+
+    it 'sets up the items' do
+      adventure.items_in_current_room.should == []
+      adventure.items_in('deep river').should == ['mirror']
+    end
+
+    it 'sets the inventory to be empty' do
+      adventure.inventory.should be_empty
     end
   end
 
@@ -53,6 +62,29 @@ describe Adventure do
         adventure.current_room.should == current_room
       end
     end
+
+    context 'taking an item' do
+      before do
+        Room.stub(:by_key).with('trees') { trees_room }
+        adventure.send(:set_current_room, 'trees')
+      end
+
+      it 'verifies that the item is actually in the room' do
+        adventure.take_item('apple').should be_false
+        adventure.inventory.include?('apple').should be_false
+      end
+
+      it 'adds the item to the inventory' do
+        adventure.take_item('cake')
+        adventure.inventory.include?('cake').should be_true
+      end
+
+      it 'removes the item from the room' do
+        adventure.take_item('cake')
+        adventure.items_in_current_room.include?('cake').should be_false
+      end
+    end
+
   end
 
 end
