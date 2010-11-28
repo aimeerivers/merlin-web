@@ -11,3 +11,14 @@ Feature: Items and obstacles
     And I should find a "mirror" there
     When I take the "mirror"
     Then my inventory should contain a "mirror"
+
+  @wip
+  Scenario: User drops an item
+    Given I have started a new adventure
+    And I move South
+    And I take the "mirror"
+    When I move North
+    And I drop the "mirror"
+    Then I should find a "mirror" there
+    And my inventory should not contain a "mirror"
+
