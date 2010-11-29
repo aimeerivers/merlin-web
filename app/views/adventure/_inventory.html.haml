@@ -1,3 +1,5 @@
 %ul.inventory
   - adventure.inventory.each do |item|
-    %li= item_with_indefinite_article(item)
+    %li{class: item}
+      = item_with_indefinite_article(item)
+      = link_to("Drop #{item}", drop_item_path(item))

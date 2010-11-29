@@ -12,7 +12,6 @@ Feature: Items and obstacles
     When I take the "mirror"
     Then my inventory should contain a "mirror"
 
-  @wip
   Scenario: User drops an item
     Given I have started a new adventure
     And I move South

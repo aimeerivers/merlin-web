@@ -4,7 +4,7 @@ class Adventure
 
   def initialize
     set_up_items
-    @inventory = []
+    set_inventory([])
     set_current_room('start')
   end
 
@@ -32,12 +32,22 @@ class Adventure
     @inventory << item_name
   end
 
+  def drop_item(item_name)
+    return false unless @inventory.include?(item_name)
+    @inventory.delete(item_name)
+    put_item_in_current_room(item_name)
+  end
+
   private
 
   def set_current_room(key)
     room = Room.by_key(key)
     return false if room.nil?
     @current_room = room
+  end
+
+  def set_inventory(items)
+    @inventory = items
   end
 
   def set_up_items
@@ -54,6 +64,10 @@ class Adventure
 
   def remove_item_from_room(item_name)
     @items.delete(item_name)
+  end
+
+  def put_item_in_current_room(item_name)
+    @items[item_name] = current_room.key
   end
 
 end

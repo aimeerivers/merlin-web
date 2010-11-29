@@ -6,6 +6,7 @@ Merlin::Application.routes.draw do
   match '/go/:direction' => 'adventure#move', as: :move
 
   match '/take/:item' => 'items#take', as: :take_item
+  match '/drop/:item' => 'items#drop', as: :drop_item
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

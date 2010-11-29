@@ -85,6 +85,26 @@ describe Adventure do
       end
     end
 
+    context 'dropping an item' do
+      before do
+        adventure.send(:set_inventory, ['cake'])
+      end
+
+      it 'verifies that the item is in the inventory' do
+        adventure.drop_item('apple').should be_false
+      end
+
+      it 'removes the item from the inventory' do
+        adventure.drop_item('cake')
+        adventure.inventory.include?('cake').should be_false
+      end
+
+      it 'leaves the item in the current room' do
+        adventure.drop_item('cake')
+        adventure.items_in_current_room.include?('cake').should be_true
+      end
+    end
+
   end
 
 end
