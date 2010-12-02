@@ -50,6 +50,12 @@ describe AdventureController do
       get :move, direction: 'west'
       flash[:error].should_not be_blank
     end
+
+    it 'shows an error message when you cannot pass' do
+      adventure.stub(:move).and_raise(AdventureErrors::CannotPassError.new('The wall is too high.'))
+      get :move, direction: 'west'
+      flash[:notice].should == 'The wall is too high.'
+    end
   end
 
 end

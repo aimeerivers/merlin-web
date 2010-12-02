@@ -10,8 +10,12 @@ class AdventureController < ApplicationController
   end
 
   def move
-    unless adventure.move(params[:direction])
-      flash[:error] = "You cannot go that way."
+    begin
+      unless adventure.move(params[:direction])
+        flash[:error] = "You can't go that way."
+      end
+    rescue AdventureErrors::CannotPassError => e
+      flash[:notice] = e.message
     end
     redirect_to adventure_path
   end

@@ -21,7 +21,6 @@ Feature: Items and obstacles
     Then I should find a "mirror" there
     And my inventory should not contain a "mirror"
 
-  @wip
   Scenario: An obstacle blocks the user but an item can be used to overcome it
     Given I have started a new adventure
     When I move West

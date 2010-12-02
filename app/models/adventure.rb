@@ -1,17 +1,24 @@
+module AdventureErrors
+  class CannotPassError < StandardError; end
+end
+
 class Adventure
 
-  attr_reader :current_room, :inventory
+  attr_reader :current_room, :inventory, :currently_using
 
   def initialize
     set_up_items
     set_inventory([])
+    set_currently_using(nil)
     set_current_room('start')
   end
 
   def move(direction)
     pathway = Pathway.from_room_in_direction(current_room.key, direction)
     return false if pathway.nil?
-    set_current_room(pathway.going_to)
+    item_to_use = @currently_using
+    set_currently_using(nil)
+    set_current_room(pathway.traverse(item_to_use))
   end
 
   def description
@@ -34,8 +41,15 @@ class Adventure
 
   def drop_item(item_name)
     return false unless @inventory.include?(item_name)
+    set_currently_using(nil) if @currently_using == item_name
     @inventory.delete(item_name)
     put_item_in_current_room(item_name)
+  end
+
+  def use_item(item_name)
+    return false unless @inventory.include?(item_name)
+    set_currently_using(item_name)
+    Item.use(item_name, @current_room)
   end
 
   private
@@ -48,6 +62,10 @@ class Adventure
 
   def set_inventory(items)
     @inventory = items
+  end
+
+  def set_currently_using(item)
+    @currently_using = item
   end
 
   def set_up_items

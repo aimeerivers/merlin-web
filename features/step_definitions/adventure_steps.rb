@@ -3,7 +3,7 @@ Given /^I have started a new adventure$/ do
 end
 
 Then /^I should start a new adventure$/ do
-  page.should have_css('.description', :text => 'You wake up on a grassy bank')
+  page.should have_css('.description', text: 'You wake up on a grassy bank')
 end
 
 When /^I move (North|South|East|West)$/ do |direction|
@@ -11,15 +11,19 @@ When /^I move (North|South|East|West)$/ do |direction|
 end
 
 Then /^the adventure should take me to the trees$/ do
-  page.should have_css('.description', :text => 'Thick trees are at the foot of a mountain')
+  page.should have_css('.description', text: 'Thick trees are at the foot of a mountain')
 end
 
 Then /^the adventure should take me to the evergreen glade$/ do
-  page.should have_css('.description', :text => 'You are in an evergreen glade')
+  page.should have_css('.description', text: 'You are in an evergreen glade')
 end
 
 Then /^the adventure should take me to the deep river$/ do
-  page.should have_css('.description', :text => 'To the South a deep river is running swiftly')
+  page.should have_css('.description', text: 'To the South a deep river is running swiftly')
+end
+
+Then /^the adventure should take me to the old stone wall$/ do
+  page.should have_css('.description', text: 'To the West is an old stone wall')
 end
 
 When /^I try to move (North|South|East|West)/ do |direction|
@@ -27,9 +31,9 @@ When /^I try to move (North|South|East|West)/ do |direction|
 end
 
 Then /^the adventure should take me back to the grassy bank$/ do
-  page.should have_css('.description', :text => 'On a grassy bank a figure lies sleeping')
+  page.should have_css('.description', text: 'On a grassy bank a figure lies sleeping')
 end
 
 Then /^I should not be able to go that way$/ do
-  page.should have_css('.error', :text => 'You cannot go that way')
+  page.should have_css('.error', text: "You can't go that way")
 end

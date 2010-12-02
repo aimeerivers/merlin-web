@@ -7,6 +7,7 @@ Merlin::Application.routes.draw do
 
   match '/take/:item' => 'items#take', as: :take_item
   match '/drop/:item' => 'items#drop', as: :drop_item
+  match '/use/:item' => 'items#use', as: :use_item
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
