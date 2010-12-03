@@ -10,16 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101202224627) do
+ActiveRecord::Schema.define(:version => 20101203204424) do
 
   create_table "pathways", :force => true do |t|
-    t.string "from"
-    t.string "direction"
-    t.string "going_to"
-    t.string "type"
-    t.string "restriction"
-    t.string "item"
-    t.string "result"
+    t.string  "from"
+    t.string  "direction"
+    t.string  "going_to"
+    t.string  "type"
+    t.string  "restriction"
+    t.string  "item"
+    t.string  "result"
+    t.boolean "fatal_without_item", :default => false
   end
 
   create_table "rooms", :force => true do |t|

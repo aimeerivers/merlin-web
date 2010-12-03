@@ -37,3 +37,7 @@ end
 Then /^I should not be able to go that way$/ do
   page.should have_css('.error', text: "You can't go that way")
 end
+
+Then /^the adventure should be over$/ do
+  page.should have_css('h2', text: 'Adventure over')
+end

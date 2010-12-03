@@ -11,6 +11,7 @@ def create_rooms
   Room.create!(key: 'deep river', description: "To the South a deep river is running swiftly. Paths lead North and East. A golden spire can be seen to the South across the water.")
   Room.create!(key: 'old stone wall', description: "To the West is an old stone wall four metres tall. A winding track runs to the East.")
   Room.create!(key: 'old wall', description: "An old wall is to the East. North is a path which winds into the mist. A small, dark tunnel goes West. To the South are some trees.")
+  Room.create!(key: 'river', description: "You are on the South bank of a river. A forest lies to the West. To the South, through a stone archway, a golden spire is shining in the sun.")
 end
 
 def create_pathways
@@ -30,4 +31,5 @@ def create_pathways
   Pathway.create!(from: 'old stone wall', direction: 'east', going_to: 'grassy bank')
 
   ObstaclePathway.create!(from: 'old stone wall', direction: 'west', going_to: 'old wall', restriction: 'The wall is too high.', item: 'ladder', result: 'The ladder leans against the wall.')
+  ObstaclePathway.create!(from: 'deep river', direction: 'south', going_to: 'river', restriction: 'You are swept away by the current.', item: 'plank', result: 'The plank reaches to the other side.', fatal_without_item: true)
 end

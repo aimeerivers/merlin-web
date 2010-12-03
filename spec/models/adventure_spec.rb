@@ -97,6 +97,14 @@ describe Adventure do
         lambda { adventure.move('west') }.should raise_error(AdventureErrors::CannotPassError, 'The wall is too high.')
         adventure.current_room.should == current_room
       end
+
+      it 'sets the adventure to game_over when the obstacle is fatal' do
+        pathway = mock(:pathway)
+        pathway.stub(:traverse).and_raise(AdventureErrors::FatalCannotPassError.new('You are swept away by the current.'))
+        Pathway.stub(:from_room_in_direction).and_return(pathway)
+        lambda { adventure.move('south') }.should raise_error(AdventureErrors::CannotPassError, 'You are swept away by the current.')
+        adventure.should be_over
+      end
     end
 
   end

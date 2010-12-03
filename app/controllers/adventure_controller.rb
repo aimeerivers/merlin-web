@@ -2,6 +2,7 @@ class AdventureController < ApplicationController
 
   def play
     session[:adventure] ||= Adventure.new
+    render(:adventure_over) if adventure.over?
   end
 
   def new

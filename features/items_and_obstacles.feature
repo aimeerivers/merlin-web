@@ -32,3 +32,11 @@ Feature: Items and obstacles
     Then I should see the information "The ladder leans against the wall"
     When I move West
     Then the adventure should take me over the old wall
+
+  Scenario: An obstacle can be fatal without the item
+    Given I have started a new adventure
+    When I move South
+    Then the adventure should take me to the deep river
+    When I try to move South
+    Then I should see the restriction "You are swept away by the current"
+    And the adventure should be over

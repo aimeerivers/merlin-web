@@ -9,6 +9,11 @@ describe ObstaclePathway do
       lambda { pathway.traverse }.should raise_error(AdventureErrors::CannotPassError)
     end
 
+    it 'raises a fatal error if the obstacle is fatal without the item' do
+      pathway.stub(:fatal_without_item) { true }
+      lambda { pathway.traverse }.should raise_error(AdventureErrors::FatalCannotPassError)
+    end
+
     it 'returns the target room key if the item works' do
       pathway.traverse('ladder').should == 'old wall'
     end

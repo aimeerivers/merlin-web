@@ -1,6 +1,7 @@
 module AdventureErrors
-  class CannotPassError < StandardError; end
   class CannotGoThatWayError < StandardError; end
+  class CannotPassError < StandardError; end
+  class FatalCannotPassError < StandardError; end
 end
 
 class Adventure
@@ -12,13 +13,19 @@ class Adventure
     set_inventory([])
     set_currently_using(nil)
     set_current_room('start')
+    set_game_in_progress
   end
 
   def move(direction)
     pathway = Pathway.from_room_in_direction(current_room.key, direction)
     raise AdventureErrors::CannotGoThatWayError if pathway.nil?
-    set_current_room(pathway.traverse(@currently_using))
-    set_currently_using(nil)
+    begin
+      set_current_room(pathway.traverse(@currently_using))
+      set_currently_using(nil)
+    rescue AdventureErrors::FatalCannotPassError => e
+      set_game_over
+      raise AdventureErrors::CannotPassError, e.message
+    end
   end
 
   def description
@@ -52,6 +59,10 @@ class Adventure
     Item.use(item_name, @current_room)
   end
 
+  def over?
+    @game_over
+  end
+
   private
 
   def set_current_room(key)
@@ -74,6 +85,14 @@ class Adventure
       'ladder' => 'old stone wall',
       'cake' => 'trees'
     }
+  end
+
+  def set_game_over
+    @game_over = true
+  end
+
+  def set_game_in_progress
+    @game_over = false
   end
 
   def item_in_current_room?(item_name)
