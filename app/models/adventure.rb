@@ -19,13 +19,7 @@ class Adventure
   def move(direction)
     pathway = Pathway.from_room_in_direction(current_room.key, direction)
     raise AdventureErrors::CannotGoThatWayError if pathway.nil?
-    begin
-      set_current_room(pathway.traverse(@currently_using))
-      set_currently_using(nil)
-    rescue AdventureErrors::FatalCannotPassError => e
-      set_game_over
-      raise AdventureErrors::CannotPassError, e.message
-    end
+    traverse(pathway)
   end
 
   def description
@@ -68,6 +62,7 @@ class Adventure
   def set_current_room(key)
     room = Room.by_key(key)
     raise AdventureErrors::CannotGoThatWayError if room.nil?
+    set_currently_using(nil)
     @current_room = room
   end
 
@@ -85,6 +80,15 @@ class Adventure
       'ladder' => 'old stone wall',
       'cake' => 'trees'
     }
+  end
+
+  def traverse(pathway)
+    begin
+      set_current_room(pathway.traverse(@currently_using))
+    rescue AdventureErrors::FatalCannotPassError => e
+      set_game_over
+      raise AdventureErrors::CannotPassError, e.message
+    end
   end
 
   def set_game_over
