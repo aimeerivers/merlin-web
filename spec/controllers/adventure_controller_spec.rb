@@ -24,6 +24,10 @@ describe AdventureController do
   end
 
   context 'deliberately starting a new adventure' do
+    before do
+      Adventure.stub(:new) { adventure }
+    end
+
     it 'starts a new adventure from scratch' do
       Adventure.should_receive(:new)
       get :new
@@ -46,7 +50,7 @@ describe AdventureController do
     end
 
     it 'adds a flash message when you cannot move that way' do
-      adventure.stub(:move) { false }
+      adventure.stub(:move).and_raise(AdventureErrors::CannotGoThatWayError)
       get :move, direction: 'west'
       flash[:error].should_not be_blank
     end

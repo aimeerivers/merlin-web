@@ -32,9 +32,13 @@ describe Adventure do
   context 'moving around' do
     let(:pathway) { mock(:pathway, traverse: 'trees') }
 
+    before do
+      Room.stub(:by_key).with('trees') { trees_room }
+    end
+
     it 'does not move with invalid input' do
       current_room = adventure.current_room
-      adventure.move('hackhackhack').should be_false
+      lambda { adventure.move('hackhackhack') }.should raise_error(AdventureErrors::CannotGoThatWayError)
       adventure.current_room.should == current_room
     end
 
@@ -42,12 +46,12 @@ describe Adventure do
       current_room = adventure.current_room
       Pathway.stub(:from_room_in_direction) { pathway }
       Room.stub(:by_key).with('trees') { nil }
-      adventure.move('south').should be_false
+      lambda { adventure.move('south') }.should raise_error(AdventureErrors::CannotGoThatWayError)
       adventure.current_room.should == current_room
     end
 
     it 'finds a path that links from the current room in that direction' do
-      Pathway.should_receive(:from_room_in_direction).with('start', 'north')
+      Pathway.should_receive(:from_room_in_direction).with('start', 'north') { pathway }
       adventure.move('north')
     end
 
@@ -79,7 +83,7 @@ describe Adventure do
       it 'does nothing' do
         current_room = adventure.current_room
         Pathway.stub(:from_room_in_direction) { nil }
-        adventure.move('north').should be_false
+        lambda { adventure.move('north') }.should raise_error(AdventureErrors::CannotGoThatWayError)
         adventure.current_room.should == current_room
       end
     end

@@ -1,5 +1,6 @@
 module AdventureErrors
   class CannotPassError < StandardError; end
+  class CannotGoThatWayError < StandardError; end
 end
 
 class Adventure
@@ -15,10 +16,9 @@ class Adventure
 
   def move(direction)
     pathway = Pathway.from_room_in_direction(current_room.key, direction)
-    return false if pathway.nil?
-    item_to_use = @currently_using
+    raise AdventureErrors::CannotGoThatWayError if pathway.nil?
+    set_current_room(pathway.traverse(@currently_using))
     set_currently_using(nil)
-    set_current_room(pathway.traverse(item_to_use))
   end
 
   def description
@@ -56,7 +56,7 @@ class Adventure
 
   def set_current_room(key)
     room = Room.by_key(key)
-    return false if room.nil?
+    raise AdventureErrors::CannotGoThatWayError if room.nil?
     @current_room = room
   end
 
