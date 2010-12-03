@@ -1,6 +1,8 @@
 Merlin::Application.routes.draw do
 
   match '/choice' => 'pages#choice', as: :choice
+  match '/notes' => 'pages#notes', as: :notes
+
   match '/adventure/new' => 'adventure#new', as: :new_adventure
   match '/adventure' => 'adventure#play', as: :adventure
   match '/go/:direction' => 'adventure#move', as: :move
@@ -8,6 +10,8 @@ Merlin::Application.routes.draw do
   match '/take/:item' => 'items#take', as: :take_item
   match '/drop/:item' => 'items#drop', as: :drop_item
   match '/use/:item' => 'items#use', as: :use_item
+
+  root to: 'pages#splash'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

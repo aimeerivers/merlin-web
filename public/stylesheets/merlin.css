@@ -7,6 +7,15 @@ body {
   color: #fff;
 }
 
+#splash-screen .center {
+  text-align: center;
+}
+
+#splash-screen img {
+  margin-top: 1em;
+  border: 2px solid #fff;
+}
+
 a {
   color: #ccc;
 }
