@@ -8,4 +8,8 @@ class Room < ActiveRecord::Base
     key.titlecase
   end
 
+  def available_directions
+    Pathway.from_room(self.key).map(&:direction)
+  end
+
 end

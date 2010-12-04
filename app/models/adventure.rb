@@ -30,6 +30,10 @@ class Adventure
     current_room.description
   end
 
+  def available_directions
+    current_room.available_directions
+  end
+
   def items_in(room)
     @items.select{|k,v| v == room}.keys
   end

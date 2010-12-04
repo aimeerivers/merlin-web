@@ -79,6 +79,14 @@ describe Adventure do
       end
     end
 
+    context 'available directions' do
+      it 'gets the current directions from the current room' do
+        directions = mock(:array)
+        start_room.should_receive(:available_directions) { directions }
+        adventure.available_directions.should == directions
+      end
+    end
+
     context 'when it finds no path in that direction' do
       it 'does nothing' do
         current_room = adventure.current_room

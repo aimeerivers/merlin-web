@@ -50,6 +50,7 @@ a {
 
 .go-north, .go-south {
   text-align: center;
+  height: 32px;
 }
 
 .go-north {

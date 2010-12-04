@@ -1,8 +1,10 @@
-= move_link('north')
+- available_directions = adventure.available_directions
+
+= direction_arrow('north', available_directions)
 
 %div
-  = move_link('west')
-  = move_link('east')
+  = direction_arrow('west', available_directions)
+  = direction_arrow('east', available_directions)
 
   #content
     %h1= adventure.room_name
@@ -14,6 +16,6 @@
 
     = render :partial => 'items_here'
 
-  = move_link('south')
+  = direction_arrow('south', available_directions)
 
 = render :partial => 'inventory'
