@@ -4,4 +4,8 @@ class Room < ActiveRecord::Base
     find_by_key(key)
   end
 
+  def name
+    key.titlecase
+  end
+
 end

@@ -1,11 +1,23 @@
-.description= adventure.description
+.go-north
+  = link_to(image_tag('go-north.jpg', :alt => 'Go North', :title => 'Go North'), move_path('north'))
 
-= render :partial => 'items_here'
+%div
+  .go-west
+    = link_to(image_tag('go-west.jpg', :alt => 'Go West', :title => 'Go West'), move_path('west'))
+  .go-east
+    = link_to(image_tag('go-east.jpg', :alt => 'Go East', :title => 'Go East'), move_path('east'))
 
-= render :partial => 'flash_messages'
+  #content
+    %h1= adventure.room_name
 
-%ul.actions
-  - %w(north east south west).each do |direction|
-    %li= link_to("Go #{direction.titlecase}", move_path(direction))
+    = render :partial => 'flash_messages'
+
+    .description
+      %p= adventure.description
+
+    = render :partial => 'items_here'
+
+  .go-south
+    = link_to(image_tag('go-south.jpg', :alt => 'Go South', :title => 'Go South'), move_path('south'))
 
 = render :partial => 'inventory'

@@ -22,6 +22,10 @@ class Adventure
     traverse(pathway)
   end
 
+  def room_name
+    current_room.name
+  end
+
   def description
     current_room.description
   end

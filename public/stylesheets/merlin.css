@@ -16,6 +16,14 @@ body {
   border: 2px solid #fff;
 }
 
+h1 {
+  color: #00f;
+}
+
+.description {
+  font-size: 1.3em;
+}
+
 a {
   color: #ccc;
 }
@@ -30,4 +38,44 @@ a {
 
 .notice {
   color: #ff0;
+}
+
+.items {
+  color: #f00;
+}
+
+.inventory {
+  color: #ff0;
+}
+
+.go-north, .go-south {
+  text-align: center;
+}
+
+.go-north {
+  margin-top: 20px;
+}
+
+.go-south {
+  margin-top: 40px;
+}
+
+.go-west {
+  float: left;
+  margin-left: 20px;
+}
+
+.go-east {
+  float: right;
+  margin-right: 20px;
+}
+
+.go-west img, .go-east img {
+  margin-top: 70px;
+}
+
+#content {
+  min-height: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
