@@ -41,3 +41,8 @@ end
 Then /^the adventure should be over$/ do
   page.should have_css('h2', text: 'Adventure over')
 end
+
+Then /^I should be lost$/ do
+  page.should have_content('You are lost, but you find a clue:')
+  page.should_not have_css("a[href^='/go/']")
+end

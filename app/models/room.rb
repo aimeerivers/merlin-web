@@ -4,10 +4,6 @@ class Room < ActiveRecord::Base
     find_by_key(key)
   end
 
-  def name
-    key.titlecase
-  end
-
   def available_directions
     Pathway.from_room(self.key).map(&:direction)
   end

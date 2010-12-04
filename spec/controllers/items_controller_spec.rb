@@ -58,7 +58,7 @@ describe ItemsController do
     it 'shows an error message if you do not have the item' do
       adventure.stub(:use_item) { false }
       get :use, item: 'ladder'
-      flash[:error].should == 'You do not have that item.'
+      flash[:error].should == "You haven't got that."
     end
 
     it 'redirects to the adventure' do

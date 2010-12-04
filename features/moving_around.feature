@@ -30,3 +30,9 @@ Feature: Moving around
     When I move South
     And I try to move East
     Then I should not be able to go that way
+
+  Scenario: Player can get stuck in a dead end room
+    Given I have started a new adventure
+    When I move East
+    And I try to move East
+    Then I should be lost

@@ -3,12 +3,6 @@ require 'spec_helper'
 describe Room do
   let(:room) { Room.new(key: 'old stone wall') }
 
-  context 'room name' do
-    it 'is the key of the room, titleized' do
-      room.name.should == 'Old Stone Wall'
-    end
-  end
-
   context 'available directions' do
     before do
       Pathway.stub(:from_room) { [] }
