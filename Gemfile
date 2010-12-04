@@ -42,6 +42,10 @@ group :cucumber do
   gem 'launchy'
 end
 
+group :test do
+  gem 'rspec_tag_matchers'
+end
+
 group :development do
   gem 'rspec-rails'
 end

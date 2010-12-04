@@ -1,11 +1,8 @@
-.go-north
-  = link_to(image_tag('go-north.jpg', :alt => 'Go North', :title => 'Go North'), move_path('north'))
+= move_link('north')
 
 %div
-  .go-west
-    = link_to(image_tag('go-west.jpg', :alt => 'Go West', :title => 'Go West'), move_path('west'))
-  .go-east
-    = link_to(image_tag('go-east.jpg', :alt => 'Go East', :title => 'Go East'), move_path('east'))
+  = move_link('west')
+  = move_link('east')
 
   #content
     %h1= adventure.room_name
@@ -17,7 +14,6 @@
 
     = render :partial => 'items_here'
 
-  .go-south
-    = link_to(image_tag('go-south.jpg', :alt => 'Go South', :title => 'Go South'), move_path('south'))
+  = move_link('south')
 
 = render :partial => 'inventory'
