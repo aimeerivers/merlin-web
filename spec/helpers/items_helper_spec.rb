@@ -11,16 +11,16 @@ describe ItemsHelper do
       item_with_indefinite_article('cake').should == 'a cake'
     end
 
-    it 'uses no article for gold' do
-      item_with_indefinite_article('gold').should == 'gold'
+    it 'uses "some" for gold' do
+      item_with_indefinite_article('gold').should == 'some gold'
     end
 
-    it 'uses no article for silver' do
-      item_with_indefinite_article('silver').should == 'silver'
+    it 'uses "some" for silver' do
+      item_with_indefinite_article('silver').should == 'some silver'
     end
 
-    it 'uses no article for water' do
-      item_with_indefinite_article('water').should == 'water'
+    it 'uses "some" for water' do
+      item_with_indefinite_article('water').should == 'some water'
     end
   end
 
