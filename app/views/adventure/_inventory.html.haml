@@ -1,7 +1,10 @@
 %ul.inventory
   - adventure.inventory.each do |item|
     %li{class: item}
-      = item
+      - if adventure.currently_using == item
+        %span{class: 'currently-using'}= item
+      - else
+        = item
       %br/
       = link_to('use', use_item_path(item))
       %br/

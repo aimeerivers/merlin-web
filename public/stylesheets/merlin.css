@@ -95,6 +95,10 @@ ul.inventory li {
   float: left;
 }
 
+.inventory .currently-using {
+  font-weight: bold;
+}
+
 .go-north, .go-south {
   text-align: center;
   height: 32px;
