@@ -1,2 +1,3 @@
-- flash.each_pair do |type, message|
-  %p{:class => type}= message
+#flash-messages
+  - flash.each_pair do |type, message|
+    %span{:class => type}= message

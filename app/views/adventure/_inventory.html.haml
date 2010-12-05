@@ -1,9 +1,8 @@
-- inventory_items = adventure.inventory
-- if inventory_items.any?
-  %p.inventory You are carrying:
-  %ul.inventory
-    - inventory_items.each do |item|
-      %li{class: item}
-        = item_with_indefinite_article(item)
-        = link_to("Drop #{item}", drop_item_path(item))
-        = link_to("Use #{item}", use_item_path(item))
+%ul.inventory
+  - adventure.inventory.each do |item|
+    %li{class: item}
+      = item
+      %br/
+      = link_to('use', use_item_path(item))
+      %br/
+      = link_to('drop', drop_item_path(item))

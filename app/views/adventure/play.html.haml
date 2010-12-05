@@ -2,17 +2,23 @@
 
 = direction_arrow('north', available_directions)
 
-%div
-  = direction_arrow('west', available_directions)
-  = direction_arrow('east', available_directions)
+= direction_arrow('west', available_directions)
+= direction_arrow('east', available_directions)
 
-  #content
-    = render :partial => 'flash_messages'
+#content
+  = render :partial => 'flash_messages'
 
-    .description= adventure.description.html_safe
+  .description= adventure.description.html_safe
 
-    = render :partial => 'items_here'
+  = render :partial => 'items_here'
 
-  = direction_arrow('south', available_directions)
+= direction_arrow('south', available_directions)
 
-= render :partial => 'inventory'
+#controls
+  = render :partial => 'inventory'
+
+  %p
+    Score:
+    0
+
+  %p Quit

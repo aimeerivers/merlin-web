@@ -1,6 +1,6 @@
 Merlin::Application.routes.draw do
 
-  match '/choice' => 'pages#choice', as: :choice
+  match '/menu' => 'pages#choice', as: :choice
   match '/notes' => 'pages#notes', as: :notes
 
   match '/adventure/new' => 'adventure#new', as: :new_adventure

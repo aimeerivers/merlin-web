@@ -9,8 +9,14 @@ body {
 
 #wrapper {
   width: 640px;
-  margin: 0 auto;
+  margin: 20px auto;
   text-align: left;
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+
+#flash-messages {
+  min-height: 30px;
 }
 
 #splash-screen .center {
@@ -71,17 +77,27 @@ a {
   color: #f00;
 }
 
-.inventory {
+ul.inventory {
   color: #ff0;
+  padding: 0;
+  list-style-type: none;
+  width: 450px;
+  height: 80px;
+  border-right: 1px solid #aaa;
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul.inventory li {
+  display: inline;
+  width: 90px;
+  float: left;
 }
 
 .go-north, .go-south {
   text-align: center;
   height: 32px;
-}
-
-.go-north {
-  margin-top: 20px;
 }
 
 .go-south {
@@ -90,20 +106,24 @@ a {
 
 .go-west {
   float: left;
-  margin-left: 20px;
 }
 
 .go-east {
   float: right;
-  margin-right: 20px;
 }
 
 .go-west img, .go-east img {
-  margin-top: 70px;
+  margin-top: 130px;
 }
 
 #content {
-  min-height: 200px;
-  margin: 0px 100px;
+  min-height: 250px;
+  margin: 0px 80px;
   padding-top: 40px;
+}
+
+#controls {
+  margin-top: 15px;
+  height: 100px;
+  border-top: 1px solid #aaa;
 }
