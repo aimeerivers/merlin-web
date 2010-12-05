@@ -9,8 +9,7 @@
   #content
     = render :partial => 'flash_messages'
 
-    .description
-      %p= adventure.description
+    .description= adventure.description.html_safe
 
     = render :partial => 'items_here'
 

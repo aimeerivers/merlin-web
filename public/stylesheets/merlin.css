@@ -22,6 +22,27 @@ h1 {
 
 .description {
   font-size: 1.3em;
+  margin: 1.5em 0;
+}
+
+.description .green {
+  color: #0f0;
+}
+
+.description .cyan {
+  color: #0ff;
+}
+
+.description .blue {
+  color: #00f;
+}
+
+.description .yellow {
+  color: #ff0;
+}
+
+.description .red {
+  color: #f00;
 }
 
 a {
