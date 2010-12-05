@@ -1,0 +1,8 @@
+%h1 Quit adventure
+
+%p Are you sure you want to quit?
+
+%p
+  = form_tag(really_quit_adventure_path) do
+    = submit_tag 'Yes - quit adventure'
+    = link_to 'No - continue adventure', adventure_path

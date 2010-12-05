@@ -191,4 +191,12 @@ describe Adventure do
       adventure.currently_using.should == 'ladder'
     end
   end
+
+  context 'quitting adventure' do
+    it 'sets the adventure state to be over' do
+      adventure.should_not be_over
+      adventure.quit!
+      adventure.should be_over
+    end
+  end
 end

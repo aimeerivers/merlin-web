@@ -57,6 +57,10 @@ class Adventure
     Item.use(item_name, @current_room)
   end
 
+  def quit!
+    set_game_over
+  end
+
   def over?
     @game_over
   end

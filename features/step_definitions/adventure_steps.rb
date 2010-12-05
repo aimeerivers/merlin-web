@@ -46,3 +46,19 @@ Then /^I should be lost$/ do
   page.should have_content('You are lost, but you find a clue:')
   page.should_not have_css("a[href^='/go/']")
 end
+
+When /^I quit the adventure$/ do
+  within(:css, '#controls') { click_link('Quit') }
+end
+
+Then /^I should see the quit adventure confirmation page$/ do
+  page.should have_content('Are you sure you want to quit?')
+end
+
+When /^I confirm that I am sure about quitting the adventure$/ do
+  click_button('Yes')
+end
+
+When /^I change my mind about quitting$/ do
+  click_link('No')
+end

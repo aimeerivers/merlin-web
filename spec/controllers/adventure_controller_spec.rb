@@ -74,4 +74,26 @@ describe AdventureController do
     end
   end
 
+  context 'quitting adventure' do
+    before do
+      session[:adventure] = adventure
+      adventure.stub(:quit!)
+    end
+
+    it 'shows a confirmation page first' do
+      adventure.should_not_receive(:quit!)
+      get :quit
+    end
+
+    it 'quits the adventure on a POST request' do
+      adventure.should_receive(:quit!)
+      post :really_quit
+    end
+
+    it 'redirects to the adventure' do
+      post :really_quit
+      response.should redirect_to(adventure_path)
+    end
+  end
+
 end

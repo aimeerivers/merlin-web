@@ -21,4 +21,11 @@ class AdventureController < ApplicationController
     redirect_to adventure_path
   end
 
+  def quit; end
+
+  def really_quit
+    adventure.quit!
+    redirect_to adventure_path
+  end
+
 end

@@ -11,6 +11,9 @@ Merlin::Application.routes.draw do
   match '/drop/:item' => 'items#drop', as: :drop_item
   match '/use/:item' => 'items#use', as: :use_item
 
+  match '/adventure/quit' => 'adventure#quit', as: :quit_adventure
+  match '/quit' => 'adventure#really_quit', as: :really_quit_adventure, via: :post
+
   root to: 'pages#splash'
 
   # The priority is based upon order of creation:
