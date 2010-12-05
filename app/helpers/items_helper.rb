@@ -7,7 +7,7 @@ module ItemsHelper
   private
 
   def indefinite_article(item)
-    return '' if %(gold silver).include? item
+    return '' if %(gold silver water).include? item
     return 'an ' if %w(a e i o u).include? item.chars.first
     'a '
   end

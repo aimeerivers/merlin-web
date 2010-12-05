@@ -6,6 +6,10 @@ When /^I take the "([^"]*)"$/ do |item_name|
   within(:css, 'p.items') { click_link(item_name) }
 end
 
+When /^I try to take the "([^"]*)"$/ do |item_name|
+  visit take_item_path(item_name)
+end
+
 When /^I drop the "([^"]*)"$/ do |item_name|
   within(:css, "ul.inventory li.#{item_name}") do
     click_link('drop')
@@ -20,4 +24,8 @@ When /^I use the "([^"]*)"$/ do |item_name|
   within(:css, "ul.inventory li.#{item_name}") do
     click_link('use')
   end
+end
+
+Then /^I should be carrying too much$/ do
+  page.should have_css('.error', text: "You're carrying too much.")
 end

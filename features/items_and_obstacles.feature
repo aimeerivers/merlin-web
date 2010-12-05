@@ -40,3 +40,15 @@ Feature: Items and obstacles
     When I try to move South
     Then I should see the restriction "You are swept away by the current"
     And the adventure should be over
+
+  Scenario: Player cannot carry more than 5 items
+    Given I have started a new adventure
+    When I move South
+    And I take the "mirror"
+    And I take the "rope"
+    And I take the "harp"
+    And I take the "mask"
+    And I take the "water"
+    And I try to take the "penny"
+    Then I should be carrying too much
+    And my inventory should not contain a "penny"

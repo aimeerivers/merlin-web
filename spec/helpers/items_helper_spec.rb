@@ -18,6 +18,10 @@ describe ItemsHelper do
     it 'uses no article for silver' do
       item_with_indefinite_article('silver').should == 'silver'
     end
+
+    it 'uses no article for water' do
+      item_with_indefinite_article('water').should == 'water'
+    end
   end
 
 end

@@ -2,9 +2,13 @@ module AdventureErrors
   class CannotGoThatWayError < StandardError; end
   class CannotPassError < StandardError; end
   class FatalCannotPassError < StandardError; end
+  class CarryingTooMuchError < StandardError; end
+  class ItemNotHereError < StandardError; end
 end
 
 class Adventure
+
+  MAX_ITEMS = 5
 
   attr_reader :current_room, :inventory, :currently_using
 
@@ -39,7 +43,8 @@ class Adventure
   end
 
   def take_item(item_name)
-    return false unless item_in_current_room?(item_name)
+    raise AdventureErrors::ItemNotHereError unless item_in_current_room?(item_name)
+    raise AdventureErrors::CarryingTooMuchError if @inventory.size >= MAX_ITEMS
     remove_item_from_room(item_name)
     @inventory << item_name
   end

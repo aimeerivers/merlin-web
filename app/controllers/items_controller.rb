@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
 
   def take
-    unless adventure.take_item(params[:item])
+    begin
+      adventure.take_item(params[:item])
+    rescue AdventureErrors::ItemNotHereError
       flash[:error] = "It's not here."
+    rescue AdventureErrors::CarryingTooMuchError
+      flash[:error] = "You're carrying too much."
     end
     redirect_to adventure_path
   end

@@ -126,7 +126,7 @@ describe Adventure do
     end
 
     it 'verifies that the item is actually in the room' do
-      adventure.take_item('apple').should be_false
+      lambda { adventure.take_item('apple') }.should raise_error(AdventureErrors::ItemNotHereError)
       adventure.inventory.include?('apple').should be_false
     end
 
@@ -138,6 +138,11 @@ describe Adventure do
     it 'removes the item from the room' do
       adventure.take_item('cake')
       adventure.items_in_current_room.include?('cake').should be_false
+    end
+
+    it 'does not allow more than 5 items to be taken' do
+      adventure.send(:set_inventory, ['harp', 'water', 'apple', 'ladder', 'rope'])
+      lambda { adventure.take_item('cake') }.should raise_error(AdventureErrors::CarryingTooMuchError)
     end
   end
 

@@ -14,9 +14,15 @@ describe ItemsController do
     end
 
     it 'provides feedback when you cannot take the item' do
-      adventure.stub(:take_item) { false }
+      adventure.stub(:take_item).and_raise(AdventureErrors::ItemNotHereError)
       get :take, item: 'mirror'
-      flash[:error].should_not be_blank
+      flash[:error].should == "It's not here."
+    end
+
+    it 'adds an error message if you are carrying too much' do
+      adventure.stub(:take_item).and_raise(AdventureErrors::CarryingTooMuchError)
+      get :take, item: 'mirror'
+      flash[:error].should == "You're carrying too much."
     end
 
     it 'redirects to the adventure' do
