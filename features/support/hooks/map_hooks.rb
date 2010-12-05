@@ -1,6 +1,7 @@
 Before('@simple_map') do
   create_rooms
   create_pathways
+  create_items
 end
 
 def create_rooms
@@ -36,4 +37,10 @@ def create_pathways
   ObstaclePathway.create!(from: 'deep river', direction: 'south', going_to: 'river', restriction: 'You are swept away by the current.', item: 'plank', result: 'The plank reaches to the other side.', fatal_without_item: true)
 
   Pathway.create!(from: 'evergreen glade', direction: 'east', going_to: 'clue: ring')
+end
+
+def create_items
+  Item.create!(name: 'mirror', initial_room: 'deep river')
+  Item.create!(name: 'ladder', initial_room: 'old stone wall')
+  Item.create!(name: 'cake', initial_room: 'trees')
 end

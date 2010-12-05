@@ -83,11 +83,10 @@ class Adventure
   end
 
   def set_up_items
-    @items = {
-      'mirror' => 'deep river',
-      'ladder' => 'old stone wall',
-      'cake' => 'trees'
-    }
+    @items = Hash.new
+    Item.all.each do |item|
+      @items[item.name] = item.initial_room
+    end
   end
 
   def traverse(pathway)

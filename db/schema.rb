@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203204424) do
+ActiveRecord::Schema.define(:version => 20101205195526) do
+
+  create_table "items", :force => true do |t|
+    t.string "name"
+    t.string "initial_room"
+  end
 
   create_table "pathways", :force => true do |t|
     t.string  "from"

@@ -6,6 +6,7 @@ describe Adventure do
   let(:trees_room) { mock(:room, key: 'trees') }
 
   before do
+    Item.stub(:all) { [mock(:item, name: 'mirror', initial_room: 'deep river'), mock(:item, name: 'cake', initial_room: 'trees')] }
     Room.stub(:by_key).with('start') { start_room }
   end
 
@@ -16,6 +17,7 @@ describe Adventure do
     end
 
     it 'sets up the items' do
+      Item.should_receive(:all)
       adventure.items_in_current_room.should == []
       adventure.items_in('deep river').should == ['mirror']
     end

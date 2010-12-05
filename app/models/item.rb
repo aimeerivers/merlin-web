@@ -1,4 +1,4 @@
-class Item
+class Item < ActiveRecord::Base
 
   def self.use(item_name, room)
     obstacles = ObstaclePathway.from_room(room.key)
