@@ -73,7 +73,7 @@ a {
   color: #ff0;
 }
 
-.items {
+.items, .items a {
   color: #f00;
 }
 

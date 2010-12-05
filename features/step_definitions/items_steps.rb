@@ -1,11 +1,9 @@
 Then /^I should find (a|an) "([^"]*)" there$/ do |article, item_name|
-  page.should have_css('ul.items li', text: article + ' ' + item_name)
+  page.should have_css('p.items a', text: article + ' ' + item_name)
 end
 
 When /^I take the "([^"]*)"$/ do |item_name|
-  within(:css, "ul.items li.#{item_name}") do
-    click_link("Take #{item_name}")
-  end
+  within(:css, 'p.items') { click_link(item_name) }
 end
 
 When /^I drop the "([^"]*)"$/ do |item_name|
