@@ -1,0 +1,43 @@
+@import url(/stylesheets/direction-arrows.css);
+
+* {
+  font-family: 'Droid Sans Mono', arial, serif;
+}
+
+#wrapper {
+  width: 640px;
+  margin: 20px auto;
+  text-align: left;
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+
+#flash-messages {
+  min-height: 30px;
+}
+
+#splash-screen .center {
+  text-align: center;
+}
+
+#splash-screen img {
+  margin-top: 1em;
+  border: 2px solid #fff;
+}
+
+#content {
+  min-height: 250px;
+  margin: 0px 80px;
+  padding-top: 40px;
+}
+
+#controls {
+  margin-top: 15px;
+  height: 100px;
+  border-top: 1px solid #aaa;
+}
+
+.description {
+  font-size: 1.3em;
+  margin: 1.5em 0;
+}

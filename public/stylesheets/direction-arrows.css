@@ -1,0 +1,20 @@
+.go-north, .go-south {
+  text-align: center;
+  height: 32px;
+}
+
+.go-south {
+  margin-top: 40px;
+}
+
+.go-west {
+  float: left;
+}
+
+.go-east {
+  float: right;
+}
+
+.go-west img, .go-east img {
+  margin-top: 130px;
+}

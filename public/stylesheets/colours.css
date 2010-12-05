@@ -1,0 +1,44 @@
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+h1 {
+  color: #00f;
+}
+
+.description .green {
+  color: #0f0;
+}
+
+.description .cyan {
+  color: #0ff;
+}
+
+.description .blue {
+  color: #00f;
+}
+
+.description .yellow {
+  color: #ff0;
+}
+
+.description .red {
+  color: #f00;
+}
+
+a {
+  color: #ccc;
+}
+
+.error {
+  color: #f00;
+}
+
+.success {
+  color: #0f0;
+}
+
+.notice {
+  color: #ff0;
+}

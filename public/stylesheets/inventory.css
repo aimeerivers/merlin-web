@@ -1,0 +1,21 @@
+ul.inventory {
+  color: #ff0;
+  padding: 0;
+  list-style-type: none;
+  width: 450px;
+  height: 80px;
+  border-right: 1px solid #aaa;
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul.inventory li {
+  display: inline;
+  width: 90px;
+  float: left;
+}
+
+.inventory .currently-using {
+  font-weight: bold;
+}
