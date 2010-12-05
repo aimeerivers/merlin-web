@@ -39,7 +39,7 @@ Then /^I should not be able to go that way$/ do
 end
 
 Then /^the adventure should be over$/ do
-  page.should have_css('h2', text: 'Adventure over')
+  page.should have_css('h1', text: 'Adventure over')
 end
 
 Then /^I should be lost$/ do
