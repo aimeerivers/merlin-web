@@ -1,4 +1,8 @@
-class Room < ActiveRecord::Base
+class Room
+  include MongoMapper::Document
+
+  key :key
+  key :description
 
   def self.by_key(key)
     find_by_key(key)

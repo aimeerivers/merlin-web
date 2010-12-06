@@ -1,4 +1,9 @@
-class Pathway < ActiveRecord::Base
+class Pathway
+  include MongoMapper::Document
+
+  key :from
+  key :direction
+  key :going_to
 
   def self.from_room(room_key)
     all(conditions: {from: room_key})

@@ -1,4 +1,8 @@
-class Item < ActiveRecord::Base
+class Item
+  include MongoMapper::Document
+
+  key :name
+  key :initial_room
 
   def self.use(item_name, room)
     obstacles = ObstaclePathway.from_room(room.key)

@@ -1,5 +1,10 @@
 class ObstaclePathway < Pathway
 
+  key :restriction
+  key :item
+  key :result
+  key :fatal_without_item
+
   validates_presence_of :restriction, :item, :result
 
   def traverse(with_item = nil)

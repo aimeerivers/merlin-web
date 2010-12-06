@@ -8,6 +8,8 @@ gem 'rails', '3.0.3'
 gem 'pg'
 gem 'jquery-rails'
 gem 'haml'
+gem 'mongo_mapper'
+gem 'bson_ext'
 
 # Use unicorn as the web server
 # gem 'unicorn'
