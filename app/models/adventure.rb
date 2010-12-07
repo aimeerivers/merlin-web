@@ -10,7 +10,7 @@ class Adventure
 
   MAX_ITEMS = 5
 
-  attr_reader :current_room, :inventory, :currently_using
+  attr_reader :inventory, :currently_using
 
   def initialize
     set_up_items
@@ -39,7 +39,7 @@ class Adventure
   end
 
   def items_in_current_room
-    items_in(@current_room.key)
+    items_in(@current_room_key)
   end
 
   def take_item(item_name)
@@ -59,7 +59,7 @@ class Adventure
   def use_item(item_name)
     return false unless @inventory.include?(item_name)
     set_currently_using(item_name)
-    Item.use(item_name, @current_room)
+    Item.use(item_name, current_room)
   end
 
   def quit!
@@ -70,13 +70,17 @@ class Adventure
     @game_over
   end
 
+  def current_room
+    Room.by_key(@current_room_key)
+  end
+
   private
 
   def set_current_room(key)
     room = Room.by_key(key)
     raise AdventureErrors::CannotGoThatWayError if room.nil?
     set_currently_using(nil)
-    @current_room = room
+    @current_room_key = key
   end
 
   def set_inventory(items)
@@ -120,7 +124,7 @@ class Adventure
   end
 
   def put_item_in_current_room(item_name)
-    @items[item_name] = current_room.key
+    @items[item_name] = @current_room_key
   end
 
 end
