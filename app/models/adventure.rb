@@ -21,7 +21,7 @@ class Adventure
   end
 
   def move(direction)
-    pathway = Pathway.from_room_in_direction(current_room.key, direction)
+    pathway = current_room.pathway_in_direction(direction)
     raise AdventureErrors::CannotGoThatWayError if pathway.nil?
     traverse(pathway)
   end

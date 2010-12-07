@@ -36,33 +36,30 @@ describe Adventure do
 
     before do
       Room.stub(:by_key).with('trees') { trees_room }
+      start_room.stub(:pathway_in_direction) { pathway }
+      Room.stub(:by_key).with('trees') { trees_room }
     end
 
     it 'does not move with invalid input' do
       current_room = adventure.current_room
+      start_room.stub(:pathway_in_direction) { nil }
       lambda { adventure.move('hackhackhack') }.should raise_error(AdventureErrors::CannotGoThatWayError)
       adventure.current_room.should == current_room
     end
 
     it 'does not change room if the room cannot be found' do
       current_room = adventure.current_room
-      Pathway.stub(:from_room_in_direction) { pathway }
       Room.stub(:by_key).with('trees') { nil }
       lambda { adventure.move('south') }.should raise_error(AdventureErrors::CannotGoThatWayError)
       adventure.current_room.should == current_room
     end
 
     it 'finds a path that links from the current room in that direction' do
-      Pathway.should_receive(:from_room_in_direction).with('start', 'north') { pathway }
+      start_room.should_receive(:pathway_in_direction).with('north')
       adventure.move('north')
     end
 
     context 'when it finds a path going to a different room' do
-      before do
-        Pathway.stub(:from_room_in_direction) { pathway }
-        Room.stub(:by_key).with('trees') { trees_room }
-      end
-
       it 'traverses the pathway with the current item being used' do
         adventure.send(:set_currently_using, 'ladder')
         pathway.should_receive(:traverse).with('ladder')
@@ -92,7 +89,7 @@ describe Adventure do
     context 'when it finds no path in that direction' do
       it 'does nothing' do
         current_room = adventure.current_room
-        Pathway.stub(:from_room_in_direction) { nil }
+        start_room.stub(:pathway_in_direction) { nil }
         lambda { adventure.move('north') }.should raise_error(AdventureErrors::CannotGoThatWayError)
         adventure.current_room.should == current_room
       end
@@ -101,17 +98,13 @@ describe Adventure do
     context 'when the path cannot be traversed (because of an obstacle)' do
       it 'fails and passes on the error' do
         current_room = adventure.current_room
-        pathway = mock(:pathway)
         pathway.stub(:traverse).and_raise(AdventureErrors::CannotPassError.new('The wall is too high.'))
-        Pathway.stub(:from_room_in_direction).and_return(pathway)
         lambda { adventure.move('west') }.should raise_error(AdventureErrors::CannotPassError, 'The wall is too high.')
         adventure.current_room.should == current_room
       end
 
       it 'sets the adventure to game_over when the obstacle is fatal' do
-        pathway = mock(:pathway)
         pathway.stub(:traverse).and_raise(AdventureErrors::FatalCannotPassError.new('You are swept away by the current.'))
-        Pathway.stub(:from_room_in_direction).and_return(pathway)
         lambda { adventure.move('south') }.should raise_error(AdventureErrors::CannotPassError, 'You are swept away by the current.')
         adventure.should be_over
       end
