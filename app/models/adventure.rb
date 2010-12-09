@@ -10,7 +10,7 @@ class Adventure
 
   MAX_ITEMS = 5
 
-  attr_reader :inventory, :currently_using
+  attr_reader :currently_using
 
   def initialize
     set_up_items
@@ -34,8 +34,12 @@ class Adventure
     current_room.available_directions
   end
 
+  def inventory
+    @inventory.sort
+  end
+
   def items_in(room)
-    @items.select{|k,v| v == room}.keys
+    @items.select{|k,v| v == room}.keys.sort
   end
 
   def items_in_current_room
