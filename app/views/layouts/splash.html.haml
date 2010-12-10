@@ -1,8 +1,11 @@
 !!!
-%head
-  %title Merlin's Castle
-  = stylesheet_link_tag 'merlin'
-  %meta{:'http-equiv' => 'refresh', content: "5;url=#{choice_path}"}
+%html
+  %head
+    %title Merlin's Castle
+    = stylesheet_link_tag 'merlin'
+    %meta{:'http-equiv' => 'refresh', content: "5;url=#{choice_path}"}
 
-%body#splash-screen
-  = yield
+    = render partial: 'shared/google_analytics'
+
+  %body#splash-screen
+    = yield

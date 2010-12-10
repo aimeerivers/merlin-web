@@ -7,8 +7,10 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
 
+    = render partial: 'shared/google_analytics'
+
   %body
-    = render :partial => 'shared/status'
+    = render partial: 'shared/status'
 
     #wrapper
       = yield
