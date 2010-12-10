@@ -35,4 +35,19 @@ describe Item do
     end
   end
 
+  context 'score for items' do
+    before do
+      Item.create!(name: 'cake', score: 3)
+      Item.create!(name: 'apple', score: 3)
+    end
+
+    after do
+      Item.destroy_all
+    end
+
+    it 'adds up the score for all the items' do
+      Item.score_for_items(['cake', 'apple']).should == 6
+    end
+  end
+
 end

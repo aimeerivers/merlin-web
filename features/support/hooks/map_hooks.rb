@@ -70,13 +70,13 @@ def create_rooms
 end
 
 def create_items
-  Item.create!(name: 'mirror', initial_room: 'deep river')
-  Item.create!(name: 'ladder', initial_room: 'old stone wall')
-  Item.create!(name: 'cake', initial_room: 'trees')
+  Item.create!(name: 'mirror', initial_room: 'deep river', score: 3)
+  Item.create!(name: 'ladder', initial_room: 'old stone wall', score: 3)
+  Item.create!(name: 'cake', initial_room: 'trees', score: 3)
 
-  Item.create!(name: 'rope', initial_room: 'deep river')
-  Item.create!(name: 'harp', initial_room: 'deep river')
-  Item.create!(name: 'mask', initial_room: 'deep river')
-  Item.create!(name: 'water', initial_room: 'deep river')
-  Item.create!(name: 'penny', initial_room: 'deep river')
+  Item.create!(name: 'rope', initial_room: 'deep river', score: 3)
+  Item.create!(name: 'harp', initial_room: 'deep river', score: 3)
+  Item.create!(name: 'mask', initial_room: 'deep river', score: 3)
+  Item.create!(name: 'water', initial_room: 'deep river', score: 3)
+  Item.create!(name: 'penny', initial_room: 'deep river', score: 3)
 end

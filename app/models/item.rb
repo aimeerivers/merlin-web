@@ -12,4 +12,8 @@ class Item
     results.first
   end
 
+  def self.score_for_items(items)
+    self.where(name: items).sum(&:score)
+  end
+
 end

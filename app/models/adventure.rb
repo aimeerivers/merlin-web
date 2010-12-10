@@ -10,12 +10,13 @@ class Adventure
 
   MAX_ITEMS = 5
 
-  attr_reader :currently_using
+  attr_reader :currently_using, :score
 
   def initialize
     set_up_items
     set_inventory([])
     set_currently_using(nil)
+    set_score(0)
     set_current_room('start')
     set_game_in_progress
   end
@@ -50,6 +51,7 @@ class Adventure
     raise AdventureErrors::ItemNotHereError unless item_in_current_room?(item_name)
     raise AdventureErrors::CarryingTooMuchError if @inventory.size >= MAX_ITEMS
     remove_item_from_room(item_name)
+    recalculate_score
     @inventory << item_name
   end
 
@@ -58,6 +60,7 @@ class Adventure
     set_currently_using(nil) if @currently_using == item_name
     @inventory.delete(item_name)
     put_item_in_current_room(item_name)
+    recalculate_score
   end
 
   def use_item(item_name)
@@ -93,6 +96,14 @@ class Adventure
 
   def set_currently_using(item)
     @currently_using = item
+  end
+
+  def recalculate_score
+    set_score(Item.score_for_items(items_in('grassy bank')))
+  end
+
+  def set_score(score)
+    @score = score
   end
 
   def set_up_items

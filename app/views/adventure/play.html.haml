@@ -17,8 +17,6 @@
 #controls
   = render :partial => 'inventory'
 
-  %p
-    Score:
-    0
+  %p.score== Score: #{adventure.score}
 
   %p= link_to 'Quit', quit_adventure_path

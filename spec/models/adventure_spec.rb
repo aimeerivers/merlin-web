@@ -4,6 +4,7 @@ describe Adventure do
   let(:adventure) { Adventure.new }
   let(:start_room) { mock(:room, key: 'start') }
   let(:trees_room) { mock(:room, key: 'trees') }
+  let(:grassy_bank) { mock(:room, key: 'grassy bank') }
 
   before do
     Item.stub(:all) { [mock(:item, name: 'mirror', initial_room: 'deep river'), mock(:item, name: 'cake', initial_room: 'trees')] }
@@ -28,6 +29,10 @@ describe Adventure do
 
     it 'sets no currently using item' do
       adventure.currently_using.should be_nil
+    end
+
+    it 'sets the score to zero' do
+      adventure.score.should == 0
     end
   end
 
@@ -112,6 +117,25 @@ describe Adventure do
 
   end
 
+  context 'updating the score' do
+    it 'calculates the score after dropping an item' do
+      Room.stub(:by_key).with('grassy bank') { grassy_bank }
+      adventure.send(:set_current_room, 'grassy bank')
+      Item.should_receive(:score_for_items).with(['cake']) { 3 }
+      adventure.send(:set_inventory, ['cake'])
+      adventure.drop_item('cake')
+      adventure.score.should == 3
+    end
+
+    it 'calculates the score after taking an item' do
+      Room.stub(:by_key).with('trees') { trees_room }
+      adventure.send(:set_current_room, 'trees')
+      Item.should_receive(:score_for_items).with([]) { 0 }
+      adventure.take_item('cake')
+      adventure.score.should == 0
+    end
+  end
+
   context 'taking an item' do
     before do
       Room.stub(:by_key).with('trees') { trees_room }
@@ -142,6 +166,7 @@ describe Adventure do
   context 'dropping an item' do
     before do
       adventure.send(:set_inventory, ['cake'])
+      Item.stub(:score_for_items) { 0 }
     end
 
     it 'verifies that the item is in the inventory' do
