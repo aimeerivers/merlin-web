@@ -1,0 +1,12 @@
+.your-score, .best-possible-score {
+  font-size: 1.3em;
+}
+
+.your-score {
+  color: #00f;
+}
+
+.best-possible-score {
+  color: #0ff;
+  margin-bottom: 2em;
+}

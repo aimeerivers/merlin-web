@@ -16,4 +16,8 @@ class Item
     self.where(name: items).sum(&:score)
   end
 
+  def self.best_possible_score
+    self.all.sum(&:score)
+  end
+
 end

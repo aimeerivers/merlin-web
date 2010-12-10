@@ -50,4 +50,16 @@ describe Item do
     end
   end
 
+  context 'best possible score' do
+    before do
+      Item.create!(name: 'cake', score: 3)
+      Item.create!(name: 'apple', score: 3)
+      Item.create!(name: 'emerald', score: 11)
+    end
+
+    it 'sums up the scores of all the items' do
+      Item.best_possible_score.should == 17
+    end
+  end
+
 end

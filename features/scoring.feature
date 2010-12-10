@@ -21,3 +21,15 @@ Feature: Scoring
 
     When I take the "mirror"
     Then my score should be 3
+
+  Scenario: Score is shown at the end of the game
+    Given I have started a new adventure
+    When I move South
+    And I take the "mirror"
+    And I move North
+    And I drop the "mirror"
+    When I quit the adventure
+    And I confirm that I am sure about quitting the adventure
+    Then the adventure should be over
+    And I should see a final score of 3
+    And I should see a best possible score of 24
