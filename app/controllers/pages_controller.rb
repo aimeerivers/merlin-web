@@ -8,4 +8,6 @@ class PagesController < ApplicationController
 
   def notes; end
 
+  def about; end
+
 end

@@ -2,6 +2,7 @@ Merlin::Application.routes.draw do
 
   match '/menu' => 'pages#choice', as: :choice
   match '/notes' => 'pages#notes', as: :notes
+  match '/about' => 'pages#about', as: :about
 
   match '/adventure/new' => 'adventure#new', as: :new_adventure
   match '/adventure' => 'adventure#play', as: :adventure

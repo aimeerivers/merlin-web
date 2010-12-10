@@ -42,6 +42,15 @@
   margin: 1.5em 0;
 }
 
+ul.choice {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+ul.choice li {
+  margin: 1em 0;
+}
+
 .warning {
   background-color: #ff0;
   color: #000;
