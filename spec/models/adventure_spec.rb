@@ -7,7 +7,7 @@ describe Adventure do
   let(:grassy_bank) { mock(:room, key: 'grassy bank') }
 
   before do
-    Item.stub(:all) { [mock(:item, name: 'mirror', initial_room: 'deep river'), mock(:item, name: 'cake', initial_room: 'trees')] }
+    Item.stub(:all) { [mock(:item, name: 'mirror', initial_room: 'deep river', score: 3), mock(:item, name: 'cake', initial_room: 'trees', score: 3)] }
     Room.stub(:by_key).with('start') { start_room }
   end
 

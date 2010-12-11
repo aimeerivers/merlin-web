@@ -37,8 +37,8 @@ describe Item do
 
   context 'score for items' do
     before do
-      Item.create!(name: 'cake', score: 3)
-      Item.create!(name: 'apple', score: 3)
+      Item.create!(name: 'cake', initial_room: 'trees', score: 3)
+      Item.create!(name: 'apple', initial_room: 'trees', score: 3)
     end
 
     after do
@@ -52,9 +52,9 @@ describe Item do
 
   context 'best possible score' do
     before do
-      Item.create!(name: 'cake', score: 3)
-      Item.create!(name: 'apple', score: 3)
-      Item.create!(name: 'emerald', score: 11)
+      Item.create!(name: 'cake', initial_room: 'trees', score: 3)
+      Item.create!(name: 'apple', initial_room: 'trees', score: 3)
+      Item.create!(name: 'emerald', initial_room: 'trees', score: 11)
     end
 
     it 'sums up the scores of all the items' do

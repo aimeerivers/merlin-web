@@ -1,8 +1,8 @@
 class Room
   include MongoMapper::Document
 
-  key :key
-  key :description
+  key :key, String, required: true
+  key :description, String, required: true
 
   has_many :pathways
 

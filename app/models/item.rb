@@ -1,8 +1,8 @@
 class Item
   include MongoMapper::Document
 
-  key :name
-  key :initial_room
+  key :name, String, required: true
+  key :initial_room, String, required: true
 
   def self.use(item_name, room)
     results = room.obstacles.map do |obstacle|
@@ -13,11 +13,11 @@ class Item
   end
 
   def self.score_for_items(items)
-    self.where(name: items).sum(&:score)
+    all(:name.in => items).sum(&:score)
   end
 
   def self.best_possible_score
-    self.all.sum(&:score)
+    all.sum(&:score)
   end
 
 end

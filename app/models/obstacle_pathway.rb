@@ -1,11 +1,9 @@
 class ObstaclePathway < Pathway
 
-  key :restriction
-  key :item
-  key :result
-  key :fatal_without_item
-
-  validates_presence_of :restriction
+  key :restriction, String, required: true
+  key :item, String
+  key :result, String
+  key :fatal_without_item, Boolean
 
   def traverse(with_item = nil)
     unless with_item == self.item
