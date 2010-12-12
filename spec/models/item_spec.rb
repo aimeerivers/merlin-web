@@ -57,6 +57,10 @@ describe Item do
       Item.create!(name: 'emerald', initial_room: 'trees', score: 11)
     end
 
+    after do
+      Item.destroy_all
+    end
+
     it 'sums up the scores of all the items' do
       Item.best_possible_score.should == 17
     end
