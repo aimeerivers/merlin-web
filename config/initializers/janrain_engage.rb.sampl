@@ -1,0 +1,2 @@
+ENV['ENGAGE_REALM'] = 'merlin'
+ENV['ENGAGE_API_KEY'] ||= 'api token here'

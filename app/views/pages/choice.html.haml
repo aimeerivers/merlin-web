@@ -1,8 +1,13 @@
 %h1 Choice Page
 
+= render partial: 'shared/flash_messages'
+
 %p You can:
 
 %ul.choice
   %li= link_to('Start a new adventure', new_adventure_path)
   %li= link_to('See the notes', notes_path)
   %li= link_to('Learn about this version', about_path)
+
+  - if user_signed_in?
+    %li= link_to('Sign out', sign_out_path)

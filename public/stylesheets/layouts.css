@@ -43,7 +43,7 @@
 }
 
 ul.choice {
-  list-style-type: none;
+  list-style-type: square;
   margin-bottom: 2em;
 }
 

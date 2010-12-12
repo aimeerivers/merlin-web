@@ -15,6 +15,10 @@ Merlin::Application.routes.draw do
   match '/adventure/quit' => 'adventure#quit', as: :quit_adventure
   match '/quit' => 'adventure#really_quit', as: :really_quit_adventure, via: :post
 
+  match '/sign-in' => 'sessions#new', as: :sign_in
+  match '/engage' => 'sessions#create', as: :engage, via: :post
+  match '/sign-out' => 'sessions#destroy', as: :sign_out
+
   root to: 'pages#splash'
 
   # The priority is based upon order of creation:
