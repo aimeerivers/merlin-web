@@ -11,3 +11,5 @@
 
   - if user_signed_in?
     %li= link_to('Sign out', sign_out_path)
+  - else
+    %li= link_to('Sign in', sign_in_path)
