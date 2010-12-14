@@ -1,0 +1,17 @@
+%h1 Load your old position
+
+= render partial: 'shared/flash_messages'
+
+
+- if @saved_adventures.empty?
+  %p You have no saved adventures.
+  %p= link_to('Start a new adventure', new_adventure_path)
+
+- else
+  %p Choose a saved adventure to load:
+
+  %ul.choice
+    - @saved_adventures.each do |adventure|
+      %li= link_to("#{adventure.name} - #{I18n.l(adventure.created_at, format: :long)}", restore_adventure_path(adventure))
+
+%p= link_to('Main menu', choice_path)

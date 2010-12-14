@@ -37,6 +37,10 @@
   border-top: 1px solid #aaa;
 }
 
+#controls p {
+  margin: 10px;
+}
+
 .description {
   font-size: 1.3em;
   margin: 1.5em 0;

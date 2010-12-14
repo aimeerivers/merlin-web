@@ -19,6 +19,11 @@ Merlin::Application.routes.draw do
   match '/engage' => 'sessions#create', as: :engage, via: :post
   match '/sign-out' => 'sessions#destroy', as: :sign_out
 
+  resources :saved_adventures, only: [:create]
+  match '/save' => 'saved_adventures#new', as: :save_adventure
+  match '/load' => 'saved_adventures#index', as: :load_adventure
+  match '/restore/:id' => 'saved_adventures#restore', as: :restore_adventure
+
   root to: 'pages#splash'
 
   # The priority is based upon order of creation:

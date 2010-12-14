@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def sign_in_required
+    unless user_signed_in?
+      session[:return_to] = request.path
+      redirect_to sign_in_path, notice: 'Please sign in first.'
+    end
+  end
+
   def adventure
     session[:adventure]
   end

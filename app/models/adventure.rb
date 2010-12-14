@@ -21,6 +21,16 @@ class Adventure
     set_game_in_progress
   end
 
+  def restore(saved_adventure)
+    set_current_room(saved_adventure['current_room_key'])
+    @items = saved_adventure['items']
+    set_inventory(saved_adventure['inventory'])
+    set_currently_using(saved_adventure['currently_using'])
+    set_score(saved_adventure['score'])
+    @game_over = saved_adventure['game_over']
+    return self
+  end
+
   def move(direction)
     pathway = current_room.pathway_in_direction(direction)
     raise AdventureErrors::CannotGoThatWayError if pathway.nil?

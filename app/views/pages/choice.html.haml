@@ -6,9 +6,13 @@
 
 %ul.choice
   %li= link_to('Start a new adventure', new_adventure_path)
+  %li= link_to('Load your old position', load_adventure_path)
   %li= link_to('See the notes', notes_path)
   %li= link_to('Learn about this version', about_path)
 
+%p Account:
+
+%ul.choice
   - if user_signed_in?
     %li= link_to('Sign out', sign_out_path)
   - else

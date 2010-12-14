@@ -1,0 +1,14 @@
+= form_for(@saved_adventure) do |f|
+  - if @saved_adventure.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@saved_adventure.errors.count, 'error')} prohibited this adventure from being saved:"
+      %ul
+      - @saved_adventure.errors.full_messages.each do |msg|
+        %li= msg
+
+  %p
+    = f.label :name, 'Name or description'
+    %br
+    = f.text_field :name
+
+  %p= submit_tag 'Save adventure'

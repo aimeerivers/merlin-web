@@ -224,4 +224,56 @@ describe Adventure do
       adventure.should be_over
     end
   end
+
+  context 'restoring a saved adventure' do
+
+    before do
+      Room.stub(:by_key).with('trees') { trees_room }
+    end
+
+    context 'in progress' do
+      let(:saved_adventure) do
+        {"items"=>{"mirror"=>"evergreen glade", "ladder"=>"old stone wall"}, "inventory"=>["apple"], "currently_using"=>"apple", "score"=>6, "current_room_key"=>"trees", "game_over"=>false}
+      end
+
+      let(:restored_adventure) { Adventure.new.restore(saved_adventure) }
+
+      it 'sets the current room' do
+        restored_adventure.current_room.should == trees_room
+      end
+
+      it 'puts the items where they should be' do
+        restored_adventure.items_in('evergreen glade').should == ['mirror']
+      end
+
+      it 'restores the inventory' do
+        restored_adventure.inventory.should == ['apple']
+      end
+
+      it 'restores the currently using item' do
+        restored_adventure.currently_using.should == 'apple'
+      end
+
+      it 'restores the score' do
+        restored_adventure.score.should == 6
+      end
+
+      it 'sets the game in progress' do
+        restored_adventure.should_not be_over
+      end
+    end
+
+    context 'game over adventure' do
+      let(:saved_adventure) do
+        {"items"=>{"mirror"=>"evergreen glade", "ladder"=>"old stone wall"}, "inventory"=>["apple"], "currently_using"=>"apple", "score"=>6, "current_room_key"=>"trees", "game_over"=>true}
+      end
+
+      let(:restored_adventure) { Adventure.new.restore(saved_adventure) }
+
+      it 'sets the game to be over' do
+        restored_adventure.should be_over
+      end
+    end
+  end
+
 end

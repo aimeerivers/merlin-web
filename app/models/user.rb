@@ -1,6 +1,8 @@
 class User
   include MongoMapper::Document
 
+  many :saved_adventures
+
   def self.from_engage_token(token)
     req = Net::HTTP.new('rpxnow.com', 443)
     req.use_ssl = true
