@@ -87,6 +87,10 @@ class Adventure
     @game_over
   end
 
+  def completed?
+    items_in('grassy bank') == Item.all_by_name
+  end
+
   def current_room
     Room.by_key(@current_room_key)
   end

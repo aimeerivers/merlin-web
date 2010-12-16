@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ItemsController do
-  let(:adventure) { mock(:adventure, take_item: true, drop_item: true, use_item: true) }
+  let(:adventure) { mock(:adventure, take_item: true, drop_item: true, use_item: true, completed?: false) }
 
   before do
     session[:adventure] = adventure
@@ -46,6 +46,17 @@ describe ItemsController do
     it 'redirects to the adventure' do
       get :drop, item: 'mirror'
       response.should redirect_to adventure_path
+    end
+
+    it 'checks whether all items are at the grassy bank' do
+      adventure.should_receive(:completed?)
+      get :drop, item: 'mirror'
+    end
+
+    it 'it displays a flash message if the game is completed' do
+      adventure.stub(:completed?) { true }
+      get :drop, item: 'mirror'
+      flash[:success].should_not be_nil
     end
   end
 

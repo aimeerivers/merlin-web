@@ -35,22 +35,7 @@ describe Item do
     end
   end
 
-  context 'score for items' do
-    before do
-      Item.create!(name: 'cake', initial_room: 'trees', score: 3)
-      Item.create!(name: 'apple', initial_room: 'trees', score: 3)
-    end
-
-    after do
-      Item.destroy_all
-    end
-
-    it 'adds up the score for all the items' do
-      Item.score_for_items(['cake', 'apple']).should == 6
-    end
-  end
-
-  context 'best possible score' do
+  context 'methods requiring data' do
     before do
       Item.create!(name: 'cake', initial_room: 'trees', score: 3)
       Item.create!(name: 'apple', initial_room: 'trees', score: 3)
@@ -61,8 +46,16 @@ describe Item do
       Item.destroy_all
     end
 
-    it 'sums up the scores of all the items' do
+    it 'score for given items' do
+      Item.score_for_items(['cake', 'apple']).should == 6
+    end
+
+    it 'best possible score for all the items' do
       Item.best_possible_score.should == 17
+    end
+
+    it 'items by name' do
+      Item.all_by_name.should == ['apple', 'cake', 'emerald']
     end
   end
 

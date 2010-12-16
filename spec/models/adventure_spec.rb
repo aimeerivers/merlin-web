@@ -276,4 +276,20 @@ describe Adventure do
     end
   end
 
+  context 'adventure completed' do
+    it 'is true when all of the items are at the grassy bank' do
+      Room.stub(:by_key).with('grassy bank') { grassy_bank }
+      adventure.send(:set_current_room, 'grassy bank')
+      adventure.send(:set_inventory, ['cake'])
+      adventure.drop_item('cake')
+      Item.stub(:all_by_name) { ['cake'] }
+      adventure.should be_completed
+    end
+
+    it 'is false when not all of the items are at the grassy bank' do
+      Item.stub(:all_by_name) { ['cake', 'gold'] }
+      adventure.should_not be_completed
+    end
+  end
+
 end

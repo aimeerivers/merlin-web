@@ -62,3 +62,7 @@ end
 When /^I change my mind about quitting$/ do
   click_link('No')
 end
+
+Then /^I should see the completed adventure success message$/ do
+  page.should have_css('.success', text: 'You have solved the mystery of Merlin!')
+end

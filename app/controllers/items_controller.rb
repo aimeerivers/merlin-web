@@ -15,6 +15,9 @@ class ItemsController < ApplicationController
     unless adventure.drop_item(params[:item])
       flash[:error] = "You haven't taken that."
     end
+    if adventure.completed?
+      flash[:success] = "You have solved the mystery of Merlin!"
+    end
     redirect_to adventure_path
   end
 
