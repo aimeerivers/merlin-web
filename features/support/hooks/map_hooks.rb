@@ -56,7 +56,7 @@ def create_rooms
     description: "To the West is an old stone wall four metres tall. A winding track runs to the East.",
     pathways: [
       Pathway.new(direction: 'east', going_to: 'grassy bank'),
-      ObstaclePathway.new(direction: 'west', going_to: 'old wall', restriction: 'The wall is too high.', item: 'ladder', result: 'The ladder leans against the wall.')
+      ObstaclePathway.new(direction: 'west', going_to: 'old wall', restriction: 'The wall is too high.', item: 'ladder', result: 'The ladder leans against the wall.', after_effect: 'You have climbed over.')
     ]
   )
 

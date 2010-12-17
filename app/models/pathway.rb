@@ -3,6 +3,7 @@ class Pathway
 
   key :direction, String
   key :going_to, String
+  key :after_effect, String
 
   def traverse(item_to_use = nil)
     self.going_to

@@ -72,6 +72,12 @@ describe AdventureController do
       get :move, direction: 'west'
       flash[:notice].should == 'The wall is too high.'
     end
+
+    it 'shows a success message when there is an after effect' do
+      adventure.stub(:move) { 'You have moved.' }
+      get :move, direction: 'west'
+      flash[:success].should == 'You have moved.'
+    end
   end
 
   context 'quitting adventure' do

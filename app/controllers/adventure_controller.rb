@@ -12,7 +12,7 @@ class AdventureController < ApplicationController
 
   def move
     begin
-      adventure.move(params[:direction])
+      flash[:success] = adventure.move(params[:direction])
     rescue AdventureErrors::CannotGoThatWayError
       flash[:error] = "You can't go that way."
     rescue AdventureErrors::CannotPassError => e

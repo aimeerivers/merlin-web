@@ -35,6 +35,7 @@ class Adventure
     pathway = current_room.pathway_in_direction(direction)
     raise AdventureErrors::CannotGoThatWayError if pathway.nil?
     traverse(pathway)
+    pathway.after_effect
   end
 
   def description

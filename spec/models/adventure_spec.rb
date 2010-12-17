@@ -37,7 +37,7 @@ describe Adventure do
   end
 
   context 'moving around' do
-    let(:pathway) { mock(:pathway, traverse: 'trees') }
+    let(:pathway) { mock(:pathway, traverse: 'trees', after_effect: nil) }
 
     before do
       Room.stub(:by_key).with('trees') { trees_room }
@@ -74,6 +74,11 @@ describe Adventure do
       it 'changes to that room' do
         adventure.move('north')
         adventure.current_room.should == trees_room
+      end
+
+      it 'returns an after effect if there is one' do
+        pathway.stub(:after_effect) { 'You have moved.' }
+        adventure.move('north').should == 'You have moved.'
       end
 
       it 'stops using any item that was being used' do
