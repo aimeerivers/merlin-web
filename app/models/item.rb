@@ -2,7 +2,11 @@ class Item
   include MongoMapper::Document
 
   key :name, String, required: true
-  key :initial_room, String, required: true
+  key :initial_rooms, Array, required: true
+
+  def initial_room
+    initial_rooms[rand(initial_rooms.size)]
+  end
 
   def self.use(item_name, room)
     results = room.obstacles.map do |obstacle|

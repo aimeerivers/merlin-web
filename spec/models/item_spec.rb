@@ -37,9 +37,9 @@ describe Item do
 
   context 'methods requiring data' do
     before do
-      Item.create!(name: 'cake', initial_room: 'trees', score: 3)
-      Item.create!(name: 'apple', initial_room: 'trees', score: 3)
-      Item.create!(name: 'emerald', initial_room: 'trees', score: 11)
+      Item.create!(name: 'cake', initial_rooms: ['trees'], score: 3)
+      Item.create!(name: 'apple', initial_rooms: ['trees'], score: 3)
+      Item.create!(name: 'emerald', initial_rooms: ['trees'], score: 11)
     end
 
     after do
