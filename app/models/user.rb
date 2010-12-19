@@ -1,6 +1,8 @@
 class User
   include MongoMapper::Document
 
+  timestamps!
+
   many :saved_adventures
 
   def self.from_engage_token(token)
