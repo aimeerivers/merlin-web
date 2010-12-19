@@ -5,7 +5,7 @@
 %table.top-scores
   - @scores.each do |score|
     %tr
-      %td= score.name
-      %td= score.score
+      %td.name= score.name
+      %td.score= score.score
 
 %p= link_to('Main menu', choice_path)
