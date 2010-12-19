@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.from_engage_token(params[:token])
     session[:current_user_identifier] = user.identifier
-    redirect_to session[:return_to] || choice_path, notice: "Signed in as #{user.preferredUsername}."
+    redirect_to session[:return_to] || choice_path, notice: "Signed in as #{user.name}."
   end
 
   def destroy

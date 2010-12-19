@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SessionsController do
 
   context 'signing in with engage' do
-    let(:user) { mock(:user, identifier: mock, preferredUsername: mock) }
+    let(:user) { mock(:user, identifier: mock, name: mock) }
 
     before do
       User.stub(:from_engage_token) { user }

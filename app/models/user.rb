@@ -16,4 +16,8 @@ class User
     create(response['profile'])
   end
 
+  def name
+    preferredUsername
+  end
+
 end
