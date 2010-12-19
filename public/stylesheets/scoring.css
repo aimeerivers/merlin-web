@@ -1,5 +1,6 @@
-.your-score, .best-possible-score {
+.scores {
   font-size: 1.3em;
+  margin-bottom: 2em;
 }
 
 .your-score {
@@ -8,5 +9,4 @@
 
 .best-possible-score {
   color: #0ff;
-  margin-bottom: 2em;
 }

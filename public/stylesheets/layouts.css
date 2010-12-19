@@ -4,6 +4,10 @@
   font-family: 'Droid Sans Mono', arial, serif;
 }
 
+h2 {
+  font-size: 1.2em;
+}
+
 #wrapper {
   width: 640px;
   margin: 20px auto;

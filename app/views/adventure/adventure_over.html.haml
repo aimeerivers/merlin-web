@@ -1,8 +1,9 @@
 %h1 Adventure over
 = render :partial => 'shared/flash_messages'
 
-%p.your-score== Your score: #{adventure.score}
+.scores
+  %p.your-score== Your score: #{adventure.score}
 
-%p.best-possible-score== Best possible score: #{Item.best_possible_score}
+  %p.best-possible-score== Best possible score: #{Item.best_possible_score}
 
 %p= link_to('Main menu', choice_path)
