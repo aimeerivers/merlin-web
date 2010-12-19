@@ -6,4 +6,11 @@
 
   %p.best-possible-score== Best possible score: #{Item.best_possible_score}
 
+- if adventure.score > 0
+  %hr/
+  %h2 Add your score to the hall of fame?
+
+  = render partial: 'scores/form'
+
+%hr/
 %p= link_to('Main menu', choice_path)

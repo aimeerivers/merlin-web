@@ -1,0 +1,11 @@
+%h1 Hall of fame
+
+= render :partial => 'shared/flash_messages'
+
+%table.top-scores
+  - @scores.each do |score|
+    %tr
+      %td= score.name
+      %td= score.score
+
+%p= link_to('Main menu', choice_path)

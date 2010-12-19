@@ -8,6 +8,12 @@ h2 {
   font-size: 1.2em;
 }
 
+input {
+  padding: 5px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
 #wrapper {
   width: 640px;
   margin: 20px auto;

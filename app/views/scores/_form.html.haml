@@ -1,0 +1,12 @@
+= form_for(:score, url: scores_path) do |f|
+  = f.error_messages message: nil
+
+  - preferred_name = current_user.name if user_signed_in?
+  - preferred_name = session[:name] if session[:name]
+
+  %p
+    = f.label :name, 'Your Name (or nickname)'
+    %br
+    = f.text_field :name, value: preferred_name
+
+  %p= submit_tag 'Add my score to the hall of fame'

@@ -10,3 +10,7 @@
 .best-possible-score {
   color: #0ff;
 }
+
+table.top-scores td {
+  padding: 5px;
+}

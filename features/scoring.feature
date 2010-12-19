@@ -33,3 +33,16 @@ Feature: Scoring
     Then the adventure should be over
     And I should see a final score of 3
     And I should see a best possible score of 24
+
+  Scenario: Player posts final score to the hall of fame
+    Given I have started a new adventure
+    And I move South
+    And I take the "mirror"
+    And I move North
+    And I drop the "mirror"
+    When I quit the adventure
+    And I confirm that I am sure about quitting the adventure
+    Then I should be offered to post my score to the hall of fame
+    When I fill in "Your Name (or nickname)" with "aimee"
+    And I press "Add my score to the hall of fame"
+    Then I should see "aimee" in the hall of fame with 3 points

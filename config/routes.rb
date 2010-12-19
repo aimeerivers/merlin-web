@@ -24,6 +24,8 @@ Merlin::Application.routes.draw do
   match '/load' => 'saved_adventures#index', as: :load_adventure
   match '/restore/:id' => 'saved_adventures#restore', as: :restore_adventure
 
+  resources :scores, only: [:index, :create]
+
   root to: 'pages#splash'
 
   # The priority is based upon order of creation:
