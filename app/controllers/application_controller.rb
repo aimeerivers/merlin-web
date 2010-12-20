@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def adventure
-    session[:adventure]
+    session[:adventure] ||= Adventure.new
   end
 
   def current_user

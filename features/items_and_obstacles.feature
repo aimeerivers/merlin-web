@@ -52,3 +52,8 @@ Feature: Items and obstacles
     And I try to take the "penny"
     Then I should be carrying too much
     And my inventory should not contain a "penny"
+
+  Scenario: Attempting to use an item straight away begins a new game
+    When I try to use the "ladder"
+    Then I should start a new adventure
+    And I should see "You haven't got that"

@@ -26,6 +26,10 @@ When /^I use the "([^"]*)"$/ do |item_name|
   end
 end
 
+When /^I try to use the "([^"]*)"$/ do |item_name|
+  visit use_item_path(item_name)
+end
+
 Then /^I should be carrying too much$/ do
   page.should have_css('.error', text: "You're carrying too much.")
 end
