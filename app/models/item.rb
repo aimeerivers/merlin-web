@@ -4,6 +4,8 @@ class Item
   field :name
   field :initial_rooms, type: Array
 
+  index :name, unique: true
+
   validates_presence_of :name
   validates_presence_of :initial_rooms
 

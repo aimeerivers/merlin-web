@@ -7,6 +7,8 @@ class Room
   validates_presence_of :key
   validates_presence_of :description
 
+  index :key, unique: true
+
   embeds_many :pathways
 
   def self.by_key(key)
