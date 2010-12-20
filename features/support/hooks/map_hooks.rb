@@ -7,6 +7,7 @@ After('@simple_map') do
   [Room, Item].each do |model|
     model.destroy_all
   end
+  Rails.cache.delete('test:Item#best_possible_score')
 end
 
 def create_rooms
