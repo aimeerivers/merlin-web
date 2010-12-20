@@ -89,7 +89,7 @@ class Adventure
   end
 
   def completed?
-    items_in('grassy bank') == Item.all_by_name
+    @score == Item.best_possible_score
   end
 
   def current_room
