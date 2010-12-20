@@ -1,3 +1,4 @@
 #flash-messages
   - flash.each_pair do |type, message|
+    - flash.delete(type)
     %span{:class => type}= message

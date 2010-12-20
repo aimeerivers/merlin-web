@@ -78,6 +78,24 @@ describe AdventureController do
       get :move, direction: 'west'
       flash[:success].should == 'You have moved.'
     end
+
+    context 'javascript requests' do
+      before do
+        adventure.stub(:move)
+      end
+
+      it 'renders the adventure page if the adventure is not over' do
+        adventure.stub(:over?) { false }
+        get :move, direction: 'west', format: :js
+        response.should render_template(:play, layout: false)
+      end
+
+      it 'renders the adventure over page if the adventure is over' do
+        adventure.stub(:over?) { true }
+        get :move, direction: 'west', format: :js
+        response.should render_template(:adventure_over, layout: false)
+      end
+    end
   end
 
   context 'quitting adventure' do

@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     rescue AdventureErrors::CarryingTooMuchError
       flash[:error] = "You're carrying too much."
     end
-    redirect_to adventure_path
+    adventure_response
   end
 
   def drop
@@ -18,14 +18,14 @@ class ItemsController < ApplicationController
     if adventure.completed?
       flash[:success] = "You have solved the mystery of Merlin!"
     end
-    redirect_to adventure_path
+    adventure_response
   end
 
   def use
     message = adventure.use_item(params[:item])
     flash[:notice] = message if message
     flash[:error] = "You haven't got that." unless message
-    redirect_to adventure_path
+    adventure_response
   end
 
 end

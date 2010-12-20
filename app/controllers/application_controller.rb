@@ -5,6 +5,18 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def adventure_response
+    respond_to do |format|
+      format.js { javascript_response }
+      format.html { redirect_to adventure_path }
+    end
+  end
+
+  def javascript_response
+    view = adventure.over? ? 'adventure/adventure_over' : 'adventure/play'
+    render(view, layout: false)
+  end
+
   def sign_in_required
     unless user_signed_in?
       session[:return_to] = request.path

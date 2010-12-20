@@ -10,12 +10,12 @@
 
   .description= adventure.description.html_safe
 
-  = render :partial => 'items_here'
+  = render :partial => 'adventure/items_here'
 
 = direction_arrow('south', available_directions)
 
 #controls
-  = render :partial => 'inventory'
+  = render :partial => 'adventure/inventory'
 
   %p.score== Score: #{adventure.score}
 

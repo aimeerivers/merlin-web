@@ -18,7 +18,7 @@ class AdventureController < ApplicationController
     rescue AdventureErrors::CannotPassError => e
       flash[:notice] = e.message
     end
-    redirect_to adventure_path
+    adventure_response
   end
 
   def quit; end
