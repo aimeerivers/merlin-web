@@ -12,7 +12,10 @@ class Room
   embeds_many :pathways
 
   def self.by_key(key)
-    first(conditions: {key: key})
+    cache_key = "#{Rails.env}:Room#by_key(#{key.gsub(/\W/, '-')})"
+    Rails.cache.fetch(cache_key) do
+      first(conditions: {key: key})
+    end
   end
 
   def pathway_in_direction(direction)
