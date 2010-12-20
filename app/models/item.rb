@@ -26,7 +26,9 @@ class Item
   end
 
   def self.best_possible_score
-    sum(:score).to_i
+    Rails.cache.fetch("Item#best_possible_score") do
+      sum(:score).to_i
+    end
   end
 
 end
