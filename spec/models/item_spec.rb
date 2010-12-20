@@ -53,10 +53,6 @@ describe Item do
     it 'best possible score for all the items' do
       Item.best_possible_score.should == 17
     end
-
-    it 'items by name' do
-      Item.all_by_name.should == ['apple', 'cake', 'emerald']
-    end
   end
 
 end

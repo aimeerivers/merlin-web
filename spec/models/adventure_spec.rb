@@ -282,17 +282,17 @@ describe Adventure do
   end
 
   context 'adventure completed' do
-    it 'is true when all of the items are at the grassy bank' do
-      Room.stub(:by_key).with('grassy bank') { grassy_bank }
-      adventure.send(:set_current_room, 'grassy bank')
-      adventure.send(:set_inventory, ['cake'])
-      adventure.drop_item('cake')
-      Item.stub(:all_by_name) { ['cake'] }
+    it 'is true when the score is the maximum score' do
+      Item.stub(:score_for_items) { 100 }
+      Item.stub(:best_possible_score) { 100 }
+      adventure.send(:recalculate_score)
       adventure.should be_completed
     end
 
-    it 'is false when not all of the items are at the grassy bank' do
-      Item.stub(:all_by_name) { ['cake', 'gold'] }
+    it 'is false when the score is not yet the maximum score' do
+      Item.stub(:score_for_items) { 6 }
+      Item.stub(:best_possible_score) { 100 }
+      adventure.send(:recalculate_score)
       adventure.should_not be_completed
     end
   end

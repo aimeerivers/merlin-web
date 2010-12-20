@@ -24,8 +24,4 @@ class Item
     all.sum(&:score)
   end
 
-  def self.all_by_name
-    all.map(&:name).sort
-  end
-
 end
