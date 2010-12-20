@@ -4,7 +4,7 @@ describe Adventure do
   let(:adventure) { Adventure.new }
   let(:start_room) { mock(:room, key: 'start') }
   let(:trees_room) { mock(:room, key: 'trees') }
-  let(:grassy_bank) { mock(:room, key: 'grassy bank') }
+  let(:grassy_bank) { mock(:room, key: Adventure::FINAL_ROOM_KEY) }
 
   before do
     Item.stub(:all) { [mock(:item, name: 'mirror', initial_room: 'deep river', score: 3), mock(:item, name: 'cake', initial_room: 'trees', score: 3)] }
@@ -123,21 +123,43 @@ describe Adventure do
   end
 
   context 'updating the score' do
-    it 'calculates the score after dropping an item' do
-      Room.stub(:by_key).with('grassy bank') { grassy_bank }
-      adventure.send(:set_current_room, 'grassy bank')
-      Item.should_receive(:score_for_items).with(['cake']) { 3 }
-      adventure.send(:set_inventory, ['cake'])
-      adventure.drop_item('cake')
-      adventure.score.should == 3
+    context 'in the grassy bank' do
+      before do
+        Room.stub(:by_key).with(Adventure::FINAL_ROOM_KEY) { grassy_bank }
+        adventure.send(:set_current_room, Adventure::FINAL_ROOM_KEY)
+      end
+
+      it 'calculates the score after dropping an item' do
+        Item.should_receive(:score_for_items).with(['cake']) { 3 }
+        adventure.send(:set_inventory, ['cake'])
+        adventure.drop_item('cake')
+        adventure.score.should == 3
+      end
+
+      it 'calculates the score after taking an item' do
+        Item.should_receive(:score_for_items).with([]) { 0 }
+        adventure.stub(:item_in_current_room?).with('cake') { true }
+        adventure.take_item('cake')
+        adventure.score.should == 0
+      end
     end
 
-    it 'calculates the score after taking an item' do
-      Room.stub(:by_key).with('trees') { trees_room }
-      adventure.send(:set_current_room, 'trees')
-      Item.should_receive(:score_for_items).with([]) { 0 }
-      adventure.take_item('cake')
-      adventure.score.should == 0
+    context 'in any other room' do
+      before do
+        Room.stub(:by_key).with('trees') { trees_room }
+        adventure.send(:set_current_room, 'trees')
+      end
+
+      it 'does not recalculate the score when dropping an item' do
+        Item.should_not_receive(:score_for_items)
+        adventure.send(:set_inventory, ['cake'])
+        adventure.drop_item('cake')
+      end
+
+      it 'does not recalculate the score when taking an item' do
+        Item.should_not_receive(:score_for_items)
+        adventure.take_item('cake')
+      end
     end
   end
 

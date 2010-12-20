@@ -9,6 +9,7 @@ end
 class Adventure
 
   MAX_ITEMS = 5
+  FINAL_ROOM_KEY = 'grassy bank'
 
   attr_reader :currently_using, :score
 
@@ -62,7 +63,7 @@ class Adventure
     raise AdventureErrors::ItemNotHereError unless item_in_current_room?(item_name)
     raise AdventureErrors::CarryingTooMuchError if @inventory.size >= MAX_ITEMS
     remove_item_from_room(item_name)
-    recalculate_score
+    recalculate_score if @current_room_key == FINAL_ROOM_KEY
     @inventory << item_name
   end
 
@@ -71,7 +72,8 @@ class Adventure
     set_currently_using(nil) if @currently_using == item_name
     @inventory.delete(item_name)
     put_item_in_current_room(item_name)
-    recalculate_score
+    recalculate_score if @current_room_key == FINAL_ROOM_KEY
+    true
   end
 
   def use_item(item_name)
@@ -114,7 +116,7 @@ class Adventure
   end
 
   def recalculate_score
-    set_score(Item.score_for_items(items_in('grassy bank')))
+    set_score(Item.score_for_items(items_in(FINAL_ROOM_KEY)))
   end
 
   def set_score(score)

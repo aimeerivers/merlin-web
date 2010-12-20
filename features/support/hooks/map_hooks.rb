@@ -20,7 +20,7 @@ def create_rooms
     ]
   )
 
-  Room.create!( key: 'grassy bank',
+  Room.create!( key: Adventure::FINAL_ROOM_KEY,
     description: "You are standing at a cross-roads. On a grassy bank a figure lies sleeping.",
     pathways: [
       Pathway.new(direction: 'north', going_to: 'trees'),
@@ -32,14 +32,14 @@ def create_rooms
 
   Room.create!( key: 'trees',
     description: "You are on a path running North to South. Thick trees are at the foot of a mountain to the North.",
-    pathways: [ Pathway.new(direction: 'south', going_to: 'grassy bank') ]
+    pathways: [ Pathway.new(direction: 'south', going_to: Adventure::FINAL_ROOM_KEY) ]
   )
 
 
   Room.create!( key: 'evergreen glade',
     description: "You are in an evergreen glade, with red spotted toadstools growing in a ring. A path runs from East to West.",
     pathways: [
-      Pathway.new(direction: 'west', going_to: 'grassy bank'),
+      Pathway.new(direction: 'west', going_to: Adventure::FINAL_ROOM_KEY),
       Pathway.new(direction: 'east', going_to: 'clue: ring')
     ]
   )
@@ -47,7 +47,7 @@ def create_rooms
   Room.create!(key: 'deep river',
     description: "To the South a deep river is running swiftly. Paths lead North and East. A golden spire can be seen to the South across the water.",
     pathways: [
-      Pathway.new(direction: 'north', going_to: 'grassy bank'),
+      Pathway.new(direction: 'north', going_to: Adventure::FINAL_ROOM_KEY),
       ObstaclePathway.new(direction: 'south', going_to: 'river', restriction: 'You are swept away by the current.', item: 'plank', result: 'The plank reaches to the other side.', fatal_without_item: true)
     ]
   )
@@ -55,7 +55,7 @@ def create_rooms
   Room.create!(key: 'old stone wall',
     description: "To the West is an old stone wall four metres tall. A winding track runs to the East.",
     pathways: [
-      Pathway.new(direction: 'east', going_to: 'grassy bank'),
+      Pathway.new(direction: 'east', going_to: Adventure::FINAL_ROOM_KEY),
       ObstaclePathway.new(direction: 'west', going_to: 'old wall', restriction: 'The wall is too high.', item: 'ladder', result: 'The ladder leans against the wall.', after_effect: 'You have climbed over.')
     ]
   )
