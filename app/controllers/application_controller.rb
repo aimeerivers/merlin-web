@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil unless user_signed_in?
-    User.find_by_identifier(session[:current_user_identifier])
+    User.first(conditions: {identifier: session[:current_user_identifier]})
   end
 
   def user_signed_in?

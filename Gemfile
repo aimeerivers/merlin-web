@@ -8,8 +8,8 @@ gem 'dynamic_form'
 
 gem 'jquery-rails'
 gem 'haml'
-gem 'mongo_mapper'
-gem 'bson_ext'
+gem 'mongoid', '2.0.0.beta.20'
+gem 'bson_ext', '1.1.5'
 
 # Use unicorn as the web server
 # gem 'unicorn'

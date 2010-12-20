@@ -1,13 +1,16 @@
 class Room
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :key, String, required: true
-  key :description, String, required: true
+  field :key
+  field :description
 
-  has_many :pathways
+  validates_presence_of :key
+  validates_presence_of :description
+
+  embeds_many :pathways
 
   def self.by_key(key)
-    find_by_key(key)
+    first(conditions: {key: key})
   end
 
   def pathway_in_direction(direction)

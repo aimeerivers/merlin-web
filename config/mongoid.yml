@@ -1,0 +1,10 @@
+development:
+  host: localhost
+  database: '#merlin-development'
+
+test:
+  host: localhost
+  database: '#merlin-test'
+
+production:
+  uri: <%= ENV['MONGOHQ_URL'] %>

@@ -1,9 +1,11 @@
 class Pathway
-  include MongoMapper::EmbeddedDocument
+  include Mongoid::Document
 
-  key :direction, String
-  key :going_to, String
-  key :after_effect, String
+  field :direction
+  field :going_to
+  field :after_effect
+
+  embedded_in :room, inverse_of: :pathways
 
   def traverse(item_to_use = nil)
     self.going_to

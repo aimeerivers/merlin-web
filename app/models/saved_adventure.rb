@@ -1,12 +1,13 @@
 class SavedAdventure
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  key :user_id, ObjectId
-  key :name, String, required: true
-  timestamps!
+  field :name
 
-  belongs_to :user
+  validates_presence_of :name
 
-  scope :newest_first, order: [['created_at', 'descending']]
+  referenced_in :user
+
+  scope :newest_first, order_by(:created_at.desc)
 
 end

@@ -1,9 +1,8 @@
 class User
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  timestamps!
-
-  many :saved_adventures
+  references_many :saved_adventures
 
   def self.from_engage_token(token)
     req = Net::HTTP.new('rpxnow.com', 443)
@@ -13,7 +12,7 @@ class User
   end
 
   def self.from_engage_response(response)
-    user = find_by_identifier(response['profile']['identifier'])
+    user = first(conditions: {identifier: response['profile']['identifier']})
     return user unless user.nil?
     create(response['profile'])
   end

@@ -1,8 +1,11 @@
 class Item
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :name, String, required: true
-  key :initial_rooms, Array, required: true
+  field :name
+  field :initial_rooms, type: Array
+
+  validates_presence_of :name
+  validates_presence_of :initial_rooms
 
   def initial_room
     initial_rooms[rand(initial_rooms.size)]
@@ -17,11 +20,11 @@ class Item
   end
 
   def self.score_for_items(items)
-    all(:name.in => items).sum(&:score)
+    where(:name.in => items).sum(:score).to_i
   end
 
   def self.best_possible_score
-    all.sum(&:score)
+    sum(:score).to_i
   end
 
 end

@@ -1,10 +1,12 @@
 class Score
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  key :name, String, required: true
-  key :score, Integer
-  timestamps!
+  field :name
+  field :score, type: Integer
 
-  scope :top, order: [['score', 'descending'], ['created_at', 'descending']]
+  validates_presence_of :name
+
+  scope :top, order_by(:score.desc, :created_at.desc)
 
 end
