@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'mongoid', '2.0.0.beta.20'
 gem 'bson_ext', '1.1.5'
+gem 'dalli'
 
 # Use unicorn as the web server
 # gem 'unicorn'
