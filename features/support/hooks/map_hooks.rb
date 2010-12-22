@@ -49,7 +49,8 @@ def create_rooms
     description: "To the South a deep river is running swiftly. Paths lead North and East. A golden spire can be seen to the South across the water.",
     pathways: [
       Pathway.new(direction: 'north', going_to: Adventure::FINAL_ROOM_KEY),
-      ObstaclePathway.new(direction: 'south', going_to: 'river', restriction: 'You are swept away by the current.', item: 'plank', result: 'The plank reaches to the other side.', fatal_without_item: true)
+      ObstaclePathway.new(direction: 'south', going_to: 'river', restriction: 'You are swept away by the current.', item: 'plank', result: 'The plank reaches to the other side.', fatal_without_item: true),
+      ObstaclePathway.new(direction: 'west', going_to: '', restriction: 'You need a rope.', item: 'rope', result: 'The rope might work for you.', after_effect: 'Ha ha, it broke!', fatal_without_item: false, fatal_with_item: true)
     ]
   )
 

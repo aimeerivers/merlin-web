@@ -41,6 +41,18 @@ Feature: Items and obstacles
     Then I should see the restriction "You are swept away by the current"
     And the adventure should be over
 
+  Scenario: An obstacle can be fatal even with the item
+    Given I have started a new adventure
+    When I move South
+    And I try to move West
+    Then I should see the restriction "You need a rope"
+    When I take the "rope"
+    And I use the "rope"
+    Then I should see the information "The rope might work for you."
+    When I move West
+    Then I should see the restriction "Ha ha, it broke!"
+    And the adventure should be over
+
   Scenario: Player cannot carry more than 5 items
     Given I have started a new adventure
     When I move South
