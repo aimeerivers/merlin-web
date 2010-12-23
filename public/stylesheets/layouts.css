@@ -64,11 +64,3 @@ ul.choice {
 ul.choice li {
   margin: 1em 0;
 }
-
-.warning {
-  background-color: #0ff;
-  color: #000;
-  font-size: 0.7em;
-  text-align: center;
-  padding: 5px;
-}
